@@ -1,0 +1,40 @@
+# Dipendenze e build
+node_modules/
+qvac/
+dist/
+*.log
+
+# Segreti: chiavi API, variabili d'ambiente
+api-key.txt
+*.key
+.env
+.env.*
+!.env.example
+
+# Configurazione reale del server (si pubblica solo l'esempio)
+qvac.config.json
+!qvac.config.json.server-example
+
+# Modelli e cache (gigabyte, mai su git)
+*.gguf
+*.bin
+models/
+.qvac/
+corestore/
+
+# Stato locale di kb-sync
+.kb-sync-state.json
+kb-sync.env
+
+# Note interne con IP, tailnet e regole operative
+CLAUDE.md
+
+# Sistema operativo ed editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Personal lab notes (Italian), kept local
+misure.md

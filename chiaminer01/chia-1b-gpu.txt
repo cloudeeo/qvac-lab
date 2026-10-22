@@ -1,0 +1,76 @@
+Modello: LLAMA_3_2_1B_INST_Q4_0 | device: gpu
+CPU: Intel(R) Core(TM) i5-8500 CPU @ 3.00GHz x6 | RAM totale 16.54 GB | usata prima del load 0.83 GB
+download/load: {"type":"modelProgress","downloaded":773025824,"total":773025824,"percentage":10   
+Caricamento: 5.7 s | RAM usata dopo il load 2.42 GB
+
+> Explain in two sentences what a KV cache is.
+A Key-Value (KV) cache is a data storage system that stores frequently accessed data in a fast and efficient manner, often using a combination of key-value pairs and a cache hierarchy to reduce the number of requests made to a slower storage system. This can improve performance by minimizing the number of times data needs to be read from disk or other storage devices, making it suitable for use in applications such as databases, file systems, and web applications.
+stats SDK: {"timeToFirstToken":2282.919,"tokensPerSecond":13.637826603217434,"promptTokensPerSecond":22.777855894142544,"cacheTokens":0,"promptTokens":52,"generatedTokens":90,"emittedTokens":90,"avgConcurrentSeq":1,"toolDefinitionsDropped":0,"backendDevice":"gpu"}
+
+> Write a short shopping list for a family dinner for four people.
+Here's a short shopping list for a family dinner for four people:
+
+**Meat and Poultry:**
+
+* Chicken breasts (4-6 lbs)
+* Ground beef or pork (1-2 lbs)
+* Bacon or other breakfast meats (1-2 packs)
+
+**Produce:**
+
+* Fresh vegetables:
+	+ Carrots
+	+ Potatoes
+	+ Onions
+	+ Tomatoes
+* Fresh herbs:
+	+ Basil
+	+ Rosemary
+	+ Thyme
+
+**Dairy and Eggs:**
+
+* Milk (1-2 gal)
+* Eggs (1-2 dozen)
+* Cheese (shredded, block, or string) (1-2 cups)
+* Butter or margarine (1-2 sticks)
+
+**Pantry:**
+
+* Canned goods:
+	+ Tomatoes
+	+ Beans (black, kidney, or pinto)
+	+ Corn
+* Grains:
+	+ Pasta (spaghetti, macaroni, or fettuccine)
+	+ Bread or tortillas
+* Snacks:
+	+ Chips or crackers
+	+ Popcorn kernels
+
+**Beverages:**
+
+* Soft drinks (1-2 cases)
+* Water or other beverages
+
+**Miscellaneous:**
+
+* Cooking oils and spices
+* Salt, pepper, and other seasonings
+
+This list provides a basic framework for a family dinner, but you can adjust it based on your family's preferences and dietary needs.
+stats SDK: {"timeToFirstToken":1088.5140000000001,"tokensPerSecond":14.227825849296657,"promptTokensPerSecond":49.60891637590329,"cacheTokens":0,"promptTokens":54,"generatedTokens":296,"emittedTokens":296,"avgConcurrentSeq":1,"toolDefinitionsDropped":0,"backendDevice":"gpu"}
+
+> Translate into Italian: "The meeting is moved to Thursday at 3 pm."
+"La conferenza è trasferita a mercoledì pomeriggio alle 15:00."
+stats SDK: {"timeToFirstToken":1095.535,"tokensPerSecond":14.379367732948884,"promptTokensPerSecond":52.02937377628282,"cacheTokens":0,"promptTokens":57,"generatedTokens":23,"emittedTokens":23,"avgConcurrentSeq":1,"toolDefinitionsDropped":0,"backendDevice":"gpu"}
+
+RAM usata durante l'inferenza: 2.56 GB
+┌─────────┬────────────────────────────────────────────┬───────────┬───────┬─────────┬────────────┐
+│ (index) │ prompt                                     │ TTFT (ms) │ token │ token/s │ totale (s) │
+├─────────┼────────────────────────────────────────────┼───────────┼───────┼─────────┼────────────┤
+│ 0       │ 'Explain in two sentences what a KV cache' │ 2336      │ 90    │ '13.4'  │ '9.0'      │
+│ 1       │ 'Write a short shopping list for a family' │ 1109      │ 296   │ '14.0'  │ '22.2'     │
+│ 2       │ 'Translate into Italian: "The meeting is ' │ 1119      │ 23    │ '14.2'  │ '2.7'      │
+└─────────┴────────────────────────────────────────────┴───────────┴───────┴─────────┴────────────┘
+Dopo unload: RAM usata 2.30 GB

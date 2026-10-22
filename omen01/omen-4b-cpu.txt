@@ -1,0 +1,67 @@
+Modello: QWEN3_4B_INST_Q4_K_M | device: cpu /no_think
+CPU: Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz x16 | RAM totale 32.97 GB | usata prima del load 1.19 GB
+download/load: {"type":"modelProgress","downloaded":2497280256,"total":2497280256,"percentage":   
+Caricamento: 8.5 s | RAM usata dopo il load 3.54 GB
+
+> Explain in two sentences what a KV cache is.
+<think>
+
+</think>
+
+A KV cache is a mechanism used in language models to store the key and value components of attention computations, which helps speed up inference by reusing previously computed information. It allows the model to maintain a running record of previously processed tokens, improving efficiency during sequence generation.
+stats SDK: {"timeToFirstToken":384.785,"tokensPerSecond":14.942036693972147,"promptTokensPerSecond":88.361032784542,"cacheTokens":0,"promptTokens":34,"generatedTokens":57,"emittedTokens":57,"avgConcurrentSeq":1,"toolDefinitionsDropped":0,"backendDevice":"cpu"}
+
+> Write a short shopping list for a family dinner for four people.
+<think>
+
+</think>
+
+Sure! Here's a short shopping list for a family dinner for four people:
+
+**Meat:**
+- 1 lb ground beef (or another protein like chicken, turkey, or sausage)
+- 1 lb chicken breasts (or other lean cuts)
+
+**Vegetables:**
+- 1 head of broccoli (or other mixed vegetables)
+- 1 bag of mixed vegetables (for side dishes)
+- 1 onion (for cooking)
+- 1 carrot (for cooking)
+
+**Pasta and Grains:**
+- 1 box of pasta (any type, like spaghetti or penne)
+- 1 cup of rice (white or brown)
+
+**Dairy:**
+- 1 container of milk (for cooking or drinking)
+- 1 loaf of bread (for sandwiches or toast)
+
+**Other Items:**
+- 1 bottle of olive oil (for cooking)
+- 1 box of seasonings (for cooking)
+- 1 box of soup (optional, for a side dish)
+
+**Optional:**
+- 1 jar of tomatoes (for sauce)
+- 1 bag of mixed greens (for a salad)
+
+This list provides enough ingredients for a hearty family meal with some variety and flexibility. Adjust quantities based on your specific recipe preferences.
+stats SDK: {"timeToFirstToken":315.753,"tokensPerSecond":14.680987846541289,"promptTokensPerSecond":114.01316852096417,"cacheTokens":0,"promptTokens":36,"generatedTokens":257,"emittedTokens":257,"avgConcurrentSeq":1,"toolDefinitionsDropped":0,"backendDevice":"cpu"}
+
+> Translate into Italian: "The meeting is moved to Thursday at 3 pm."
+<think>
+
+</think>
+
+La riunione è postpagata giovedì alle 15.
+stats SDK: {"timeToFirstToken":354.803,"tokensPerSecond":14.855982392689668,"promptTokensPerSecond":109.92015287356647,"cacheTokens":0,"promptTokens":39,"generatedTokens":20,"emittedTokens":20,"avgConcurrentSeq":1,"toolDefinitionsDropped":0,"backendDevice":"cpu"}
+
+RAM usata durante l'inferenza: 3.44 GB
+┌─────────┬────────────────────────────────────────────┬───────────┬───────┬─────────┬────────────┐
+│ (index) │ prompt                                     │ TTFT (ms) │ token │ token/s │ totale (s) │
+├─────────┼────────────────────────────────────────────┼───────────┼───────┼─────────┼────────────┤
+│ 0       │ 'Explain in two sentences what a KV cache' │ 415       │ 57    │ '13.3'  │ '4.7'      │
+│ 1       │ 'Write a short shopping list for a family' │ 323       │ 257   │ '13.1'  │ '20.0'     │
+│ 2       │ 'Translate into Italian: "The meeting is ' │ 361       │ 20    │ '13.3'  │ '1.9'      │
+└─────────┴────────────────────────────────────────────┴───────────┴───────┴─────────┴────────────┘
+Dopo unload: RAM usata 1.44 GB

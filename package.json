@@ -1,0 +1,19 @@
+{
+  "name": "qvac-lab",
+  "version": "1.0.0",
+  "main": "measure.js",
+  "scripts": {
+    "measure": "node measure.js",
+    "http-bench": "node --env-file=.env http-bench.js",
+    "rpc-serve": "node rpc-serve.js",
+    "rpc-client": "node rpc-client.js"
+  },
+  "keywords": [],
+  "author": "Claudio Alberti",
+  "license": "ISC",
+  "description": "Hands-on benchmarks of the QVAC SDK (Tether) on home hardware: CPU vs GPU, model sizes, RPC vs HTTP.",
+  "type": "module",
+  "dependencies": {
+    "@qvac/sdk": "^0.21.0"
+  }
+}

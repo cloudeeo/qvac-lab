@@ -1,0 +1,59 @@
+Modello: LLAMA_3_2_1B_INST_Q4_0 | device: cpu
+CPU: Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz x16 | RAM totale 32.97 GB | usata prima del load 1.29 GB
+download/load: {"type":"modelProgress","downloaded":773025824,"total":773025824,"percentage":10   
+Caricamento: 3.6 s | RAM usata dopo il load 2.27 GB
+
+> Explain in two sentences what a KV cache is.
+A K-V cache (short for key-value cache) is a data structure that stores a collection of key-value pairs in memory, allowing for faster lookup and retrieval times by using a key to access specific values. It's a type of caching implementation that stores data in a contiguous block of memory, making it suitable for applications that require fast access to frequently used data.
+stats SDK: {"timeToFirstToken":221.594,"tokensPerSecond":48.14461851984976,"promptTokensPerSecond":234.66339341317905,"cacheTokens":0,"promptTokens":52,"generatedTokens":73,"emittedTokens":73,"avgConcurrentSeq":1,"toolDefinitionsDropped":0,"backendDevice":"cpu"}
+
+> Write a short shopping list for a family dinner for four people.
+Here's a short shopping list for a family dinner for four people:
+
+**Main Course:**
+
+* Chicken breast (4-5 lbs) or thighs for roasting
+* Beef or pork steaks (1-2 lbs) for grilling or pan-frying
+* Vegetables (e.g., carrots, potatoes, bell peppers) for roasting or roasting
+
+**Produce:**
+
+* Fresh herbs (e.g., parsley, rosemary, thyme) for garnish
+* Apples or other fruits for dessert
+* Vegetables (e.g., broccoli, green beans, peas) for side dishes
+
+**Dairy and Eggs:**
+
+* Milk or dairy alternatives
+* Cheese (e.g., cheddar, mozzarella, feta) for serving
+* Eggs for breakfast or brunch
+
+**Pantry:**
+
+* Bread (e.g., baguette, pizza) for sandwiches or toast
+* Pasta or rice for side dishes
+* Canned goods (e.g., beans, tomatoes) for sauces or soups
+* Beverages (e.g., wine, soda, juice)
+
+**Miscellaneous:**
+
+* Cooking oil or butter for frying
+* Spices and seasonings (e.g., salt, pepper, paprika)
+* Condiments (e.g., ketchup, mustard, mayonnaise)
+
+Remember to adjust the quantities based on your family's preferences and dietary needs.
+stats SDK: {"timeToFirstToken":147.964,"tokensPerSecond":47.17726544073958,"promptTokensPerSecond":364.9536373712525,"cacheTokens":0,"promptTokens":54,"generatedTokens":286,"emittedTokens":286,"avgConcurrentSeq":1,"toolDefinitionsDropped":0,"backendDevice":"cpu"}
+
+> Translate into Italian: "The meeting is moved to Thursday at 3 pm."
+"La conferenza viene spostata al mercoledì alle 15.00."
+stats SDK: {"timeToFirstToken":160.594,"tokensPerSecond":46.83090346671924,"promptTokensPerSecond":354.93231378507295,"cacheTokens":0,"promptTokens":57,"generatedTokens":19,"emittedTokens":19,"avgConcurrentSeq":1,"toolDefinitionsDropped":0,"backendDevice":"cpu"}
+
+RAM usata durante l'inferenza: 2.15 GB
+┌─────────┬────────────────────────────────────────────┬───────────┬───────┬─────────┬────────────┐
+│ (index) │ prompt                                     │ TTFT (ms) │ token │ token/s │ totale (s) │
+├─────────┼────────────────────────────────────────────┼───────────┼───────┼─────────┼────────────┤
+│ 0       │ 'Explain in two sentences what a KV cache' │ 256       │ 73    │ '47.6'  │ '1.8'      │
+│ 1       │ 'Write a short shopping list for a family' │ 154       │ 286   │ '46.8'  │ '6.3'      │
+│ 2       │ 'Translate into Italian: "The meeting is ' │ 166       │ 19    │ '46.4'  │ '0.6'      │
+└─────────┴────────────────────────────────────────────┴───────────┴───────┴─────────┴────────────┘
+Dopo unload: RAM usata 1.55 GB

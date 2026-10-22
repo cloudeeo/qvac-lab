@@ -1,0 +1,59 @@
+Modello: QWEN3_4B_INST_Q4_K_M | device: gpu /no_think
+CPU: Intel(R) Core(TM) i5-8500 CPU @ 3.00GHz x6 | RAM totale 16.54 GB | usata prima del load 0.86 GB
+download/load: {"type":"modelProgress","downloaded":2497280256,"total":2497280256,"percentage":   
+Caricamento: 11.8 s | RAM usata dopo il load 4.36 GB
+
+> Explain in two sentences what a KV cache is.
+<think>
+
+</think>
+
+A KV cache is a mechanism used in large language models to store and reuse key-value pairs during text generation, improving efficiency by avoiding redundant computations. It helps speed up the inference process by maintaining a record of previously processed tokens and their associated keys and values.
+stats SDK: {"timeToFirstToken":6033.432,"tokensPerSecond":4.079861130428635,"promptTokensPerSecond":5.6352669591701705,"cacheTokens":0,"promptTokens":34,"generatedTokens":55,"emittedTokens":55,"avgConcurrentSeq":1,"toolDefinitionsDropped":0,"backendDevice":"gpu"}
+
+> Write a short shopping list for a family dinner for four people.
+<think>
+
+</think>
+
+Here's a short shopping list for a family dinner for four people:
+
+**Provisions:**
+- Chicken (or another protein source, like fish or tofu)
+- Mixed vegetables (carrots, peas, corn, etc.)
+- Onions
+- Garlic
+- Olive oil
+- Salt and pepper
+- Paprika (optional, for flavor)
+- Fresh herbs (like basil or thyme, optional)
+
+**Bread and Desserts (optional):**
+- Bread (for baking or eating with the meal)
+- Fresh fruit (for a dessert or side)
+
+**Optional:**
+- Soup base or broth (if making a soup)
+- Canned beans or corn (if making a stew or soup)
+- Condiments (ketchup, mustard, mayonnaise)
+
+Let me know if you want a more specific list based on a particular cuisine or meal type!
+stats SDK: {"timeToFirstToken":4218.418,"tokensPerSecond":4.188723551446444,"promptTokensPerSecond":8.534004927913735,"cacheTokens":0,"promptTokens":36,"generatedTokens":178,"emittedTokens":178,"avgConcurrentSeq":1,"toolDefinitionsDropped":0,"backendDevice":"gpu"}
+
+> Translate into Italian: "The meeting is moved to Thursday at 3 pm."
+<think>
+
+</think>
+
+La riunione è posticipata a giovedì alle 15.
+stats SDK: {"timeToFirstToken":4239.089,"tokensPerSecond":4.231354335626996,"promptTokensPerSecond":9.200089924981523,"cacheTokens":0,"promptTokens":39,"generatedTokens":21,"emittedTokens":21,"avgConcurrentSeq":1,"toolDefinitionsDropped":0,"backendDevice":"gpu"}
+
+RAM usata durante l'inferenza: 4.43 GB
+┌─────────┬────────────────────────────────────────────┬───────────┬───────┬─────────┬────────────┐
+│ (index) │ prompt                                     │ TTFT (ms) │ token │ token/s │ totale (s) │
+├─────────┼────────────────────────────────────────────┼───────────┼───────┼─────────┼────────────┤
+│ 0       │ 'Explain in two sentences what a KV cache' │ 6085      │ 55    │ '3.1'   │ '23.9'     │
+│ 1       │ 'Write a short shopping list for a family' │ 4227      │ 178   │ '3.2'   │ '59.3'     │
+│ 2       │ 'Translate into Italian: "The meeting is ' │ 4247      │ 21    │ '2.5'   │ '12.7'     │
+└─────────┴────────────────────────────────────────────┴───────────┴───────┴─────────┴────────────┘
+Dopo unload: RAM usata 4.17 GB

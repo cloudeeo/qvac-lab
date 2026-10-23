@@ -18,7 +18,7 @@ const PROMPTS = [
 const gb = (b) => (b / 1e9).toFixed(2)
 const usedRam = () => gb(os.totalmem() - os.freemem())
 
-console.log(`Modello: ${MODEL_NAME} | device: ${process.env.DEVICE || 'gpu'}${SUFFIX}`)
+console.log(`Modello: ${MODEL_NAME} | device: ${process.env.DEVICE || 'gpu'}${process.env.BACKEND ? ' | backend: ' + process.env.BACKEND : ''}${SUFFIX}`)
 console.log(`CPU: ${os.cpus()[0].model} x${os.cpus().length} | RAM totale ${gb(os.totalmem())} GB | usata prima del load ${usedRam()} GB`)
 
 let t = performance.now()
@@ -26,7 +26,12 @@ const modelId = await loadModel({
   modelSrc: MODEL,
   ...(process.env.FALLBACK ? { fallbackSrc: process.env.FALLBACK } : {}),
   modelType: 'llm',
-  modelConfig: { device: process.env.DEVICE || 'gpu', ...(process.env.REASONING !== undefined ? { reasoning_budget: Number(process.env.REASONING) } : {}) },
+  modelConfig: {
+    device: process.env.DEVICE || 'gpu',
+    ...(process.env.REASONING !== undefined ? { reasoning_budget: Number(process.env.REASONING) } : {}),
+    ...(process.env.BACKEND ? { backend: process.env.BACKEND.split(',').map((s) => s.trim()) } : {}), // SDK >= 0.22: lista ordinata, es. BACKEND=cuda oppure cuda,vulkan
+  },
+  ...(process.env.FITPOLICY ? { modelFitPolicy: process.env.FITPOLICY } : {}), // SDK >= 0.22: log | off | refuse
   onProgress: (p) => process.stdout.write(`\rdownload/load: ${JSON.stringify(p).slice(0, 80)}   `),
 })
 const loadS = (performance.now() - t) / 1000

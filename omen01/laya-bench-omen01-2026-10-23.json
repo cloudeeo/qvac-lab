@@ -1,0 +1,2610 @@
+{
+  "host": "omen01",
+  "date": "2026-10-23T15:25:49.886Z",
+  "device": "cpu",
+  "threshold": 0.7,
+  "fastPath": 0.9,
+  "runs": [
+    {
+      "model": "LAYA_MULTILINGUAL_322M_Q8_0",
+      "version": "v1",
+      "correct": 27,
+      "total": 40,
+      "avgMs": 65.267919225,
+      "preds": [
+        {
+          "text": "Turn off the lights in the living room",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9997,
+          "ms": 111.76245300000028
+        },
+        {
+          "text": "Switch off the heating in the bedroom",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9996,
+          "ms": 63.48639899999989
+        },
+        {
+          "text": "Remind me to buy milk tomorrow at 8",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9378,
+          "ms": 64.90860399999929
+        },
+        {
+          "text": "Set a timer for 12 minutes",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.5324,
+          "ms": 63.70098499999949
+        },
+        {
+          "text": "Turn the thermostat up to 21 degrees",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9998,
+          "ms": 64.39374299999963
+        },
+        {
+          "text": "Open the garage door",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9977,
+          "ms": 62.12701299999935
+        },
+        {
+          "text": "Wake me up at 6:30 tomorrow",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9871,
+          "ms": 66.82794100000046
+        },
+        {
+          "text": "Lock the front door",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9996,
+          "ms": 69.36914199999956
+        },
+        {
+          "text": "Dim the kitchen lights to 30 percent",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9996,
+          "ms": 65.77712000000065
+        },
+        {
+          "text": "Start the robot vacuum",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9995,
+          "ms": 60.48085499999979
+        },
+        {
+          "text": "What's the weather in Geneva tomorrow?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.6785,
+          "ms": 63.27552899999955
+        },
+        {
+          "text": "Who won the Servette match last night?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.5447,
+          "ms": 63.0961470000002
+        },
+        {
+          "text": "Is the A1 motorway open right now near Lausanne?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.9074,
+          "ms": 64.91911400000026
+        },
+        {
+          "text": "What's the price of bitcoin right now?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.9495,
+          "ms": 64.39675700000043
+        },
+        {
+          "text": "What time does the supermarket in Carouge close today?",
+          "expected": "search",
+          "choice": "action",
+          "p": 0.5859,
+          "ms": 64.67686999999933
+        },
+        {
+          "text": "What is the latest news about the Swiss elections?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.9476,
+          "ms": 64.105595
+        },
+        {
+          "text": "Is my 8:12 train to Zurich on time?",
+          "expected": "search",
+          "choice": "document",
+          "p": 0.7494,
+          "ms": 66.86740299999929
+        },
+        {
+          "text": "Which films are showing at the cinema tonight?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.5398,
+          "ms": 64.152016
+        },
+        {
+          "text": "What's today's euro to Swiss franc exchange rate?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.7536,
+          "ms": 66.76488700000027
+        },
+        {
+          "text": "Are there storm warnings for Geneva this weekend?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.3702,
+          "ms": 63.72093000000041
+        },
+        {
+          "text": "What does my car insurance policy say about windscreen damage?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.8823,
+          "ms": 65.07233499999984
+        },
+        {
+          "text": "When does the rental contract I uploaded expire?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.9067,
+          "ms": 63.6137690000005
+        },
+        {
+          "text": "Summarise the PDF from yesterday's meeting",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.9683,
+          "ms": 64.31888600000002
+        },
+        {
+          "text": "How much was my last electricity bill?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.6705,
+          "ms": 63.079522
+        },
+        {
+          "text": "Find the warranty for my washing machine",
+          "expected": "document",
+          "choice": "action",
+          "p": 0.5421,
+          "ms": 62.31243900000027
+        },
+        {
+          "text": "What did the school letter say about the trip date?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.9983,
+          "ms": 64.39919399999962
+        },
+        {
+          "text": "List the action items from my notes of Monday's call",
+          "expected": "document",
+          "choice": "action",
+          "p": 0.9491,
+          "ms": 66.06612099999984
+        },
+        {
+          "text": "What's the notice period in my gym membership contract?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.9303,
+          "ms": 66.68285999999989
+        },
+        {
+          "text": "Which page of my boiler manual explains the reset?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.9992,
+          "ms": 63.68509499999982
+        },
+        {
+          "text": "What did I write in my notes about the garden fence?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.9994,
+          "ms": 65.5648140000003
+        },
+        {
+          "text": "Explain the difference between a mortgage and a loan",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.8284,
+          "ms": 62.96344700000009
+        },
+        {
+          "text": "Write me a short poem about autumn",
+          "expected": "chat",
+          "choice": "action",
+          "p": 0.5799,
+          "ms": 61.9360800000004
+        },
+        {
+          "text": "What's 17% of 240?",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.6824,
+          "ms": 66.25818799999979
+        },
+        {
+          "text": "Explain how a heat pump works",
+          "expected": "chat",
+          "choice": "document",
+          "p": 0.5973,
+          "ms": 61.40875099999994
+        },
+        {
+          "text": "Suggest a name for a black cat",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.9124,
+          "ms": 61.76351100000011
+        },
+        {
+          "text": "Translate \"good morning\" into Spanish",
+          "expected": "chat",
+          "choice": "action",
+          "p": 0.6081,
+          "ms": 62.1851630000001
+        },
+        {
+          "text": "Give me a recipe for mushroom risotto",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.9356,
+          "ms": 62.58517000000029
+        },
+        {
+          "text": "What is the capital of Australia?",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.7136,
+          "ms": 62.20843200000036
+        },
+        {
+          "text": "Help me write a polite email declining an invitation",
+          "expected": "chat",
+          "choice": "document",
+          "p": 0.4687,
+          "ms": 63.83972400000039
+        },
+        {
+          "text": "Tell me a joke about programmers",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.9337,
+          "ms": 61.96376500000042
+        }
+      ]
+    },
+    {
+      "model": "LAYA_MULTILINGUAL_322M_Q8_0",
+      "version": "v2",
+      "correct": 25,
+      "total": 40,
+      "avgMs": 94.61865407499984,
+      "preds": [
+        {
+          "text": "Turn off the lights in the living room",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9973,
+          "ms": 92.92665699999998
+        },
+        {
+          "text": "Switch off the heating in the bedroom",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.998,
+          "ms": 91.48790399999962
+        },
+        {
+          "text": "Remind me to buy milk tomorrow at 8",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.6133,
+          "ms": 94.10257499999989
+        },
+        {
+          "text": "Set a timer for 12 minutes",
+          "expected": "action",
+          "choice": "document",
+          "p": 0.2515,
+          "ms": 91.99536100000023
+        },
+        {
+          "text": "Turn the thermostat up to 21 degrees",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9923,
+          "ms": 93.67302199999995
+        },
+        {
+          "text": "Open the garage door",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9894,
+          "ms": 90.3757970000006
+        },
+        {
+          "text": "Wake me up at 6:30 tomorrow",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.7631,
+          "ms": 94.54195600000003
+        },
+        {
+          "text": "Lock the front door",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9946,
+          "ms": 90.06327200000032
+        },
+        {
+          "text": "Dim the kitchen lights to 30 percent",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9827,
+          "ms": 93.88405499999953
+        },
+        {
+          "text": "Start the robot vacuum",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9928,
+          "ms": 89.94624899999963
+        },
+        {
+          "text": "What's the weather in Geneva tomorrow?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.8005,
+          "ms": 93.04987700000038
+        },
+        {
+          "text": "Who won the Servette match last night?",
+          "expected": "search",
+          "choice": "document",
+          "p": 0.83,
+          "ms": 92.00329599999986
+        },
+        {
+          "text": "Is the A1 motorway open right now near Lausanne?",
+          "expected": "search",
+          "choice": "document",
+          "p": 0.6073,
+          "ms": 94.62243399999988
+        },
+        {
+          "text": "What's the price of bitcoin right now?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.4807,
+          "ms": 94.4392110000008
+        },
+        {
+          "text": "What time does the supermarket in Carouge close today?",
+          "expected": "search",
+          "choice": "chat",
+          "p": 0.3629,
+          "ms": 101.11116699999911
+        },
+        {
+          "text": "What is the latest news about the Swiss elections?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.7443,
+          "ms": 94.11557400000038
+        },
+        {
+          "text": "Is my 8:12 train to Zurich on time?",
+          "expected": "search",
+          "choice": "document",
+          "p": 0.8388,
+          "ms": 96.8443299999999
+        },
+        {
+          "text": "Which films are showing at the cinema tonight?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.7596,
+          "ms": 93.96866199999931
+        },
+        {
+          "text": "What's today's euro to Swiss franc exchange rate?",
+          "expected": "search",
+          "choice": "document",
+          "p": 0.6839,
+          "ms": 107.27250300000014
+        },
+        {
+          "text": "Are there storm warnings for Geneva this weekend?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.7452,
+          "ms": 94.05187099999966
+        },
+        {
+          "text": "What does my car insurance policy say about windscreen damage?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.9841,
+          "ms": 94.81579299999976
+        },
+        {
+          "text": "When does the rental contract I uploaded expire?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.9871,
+          "ms": 93.62403500000073
+        },
+        {
+          "text": "Summarise the PDF from yesterday's meeting",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.8857,
+          "ms": 94.27039999999943
+        },
+        {
+          "text": "How much was my last electricity bill?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.9614,
+          "ms": 93.97384899999997
+        },
+        {
+          "text": "Find the warranty for my washing machine",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.6042,
+          "ms": 98.0979040000002
+        },
+        {
+          "text": "What did the school letter say about the trip date?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.8884,
+          "ms": 96.3424670000004
+        },
+        {
+          "text": "List the action items from my notes of Monday's call",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.828,
+          "ms": 95.91988599999968
+        },
+        {
+          "text": "What's the notice period in my gym membership contract?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.9841,
+          "ms": 95.73141099999884
+        },
+        {
+          "text": "Which page of my boiler manual explains the reset?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.9957,
+          "ms": 94.35721999999987
+        },
+        {
+          "text": "What did I write in my notes about the garden fence?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.9757,
+          "ms": 120.81996099999924
+        },
+        {
+          "text": "Explain the difference between a mortgage and a loan",
+          "expected": "chat",
+          "choice": "document",
+          "p": 0.8327,
+          "ms": 93.22440900000038
+        },
+        {
+          "text": "Write me a short poem about autumn",
+          "expected": "chat",
+          "choice": "action",
+          "p": 0.6291,
+          "ms": 91.40664999999899
+        },
+        {
+          "text": "What's 17% of 240?",
+          "expected": "chat",
+          "choice": "document",
+          "p": 0.554,
+          "ms": 95.67305699999997
+        },
+        {
+          "text": "Explain how a heat pump works",
+          "expected": "chat",
+          "choice": "document",
+          "p": 0.4606,
+          "ms": 91.79500399999961
+        },
+        {
+          "text": "Suggest a name for a black cat",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.9623,
+          "ms": 92.18111999999928
+        },
+        {
+          "text": "Translate \"good morning\" into Spanish",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.352,
+          "ms": 91.24856799999907
+        },
+        {
+          "text": "Give me a recipe for mushroom risotto",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.7453,
+          "ms": 91.71943199999987
+        },
+        {
+          "text": "What is the capital of Australia?",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.5847,
+          "ms": 91.84606699999858
+        },
+        {
+          "text": "Help me write a polite email declining an invitation",
+          "expected": "chat",
+          "choice": "action",
+          "p": 0.6863,
+          "ms": 92.9310260000002
+        },
+        {
+          "text": "Tell me a joke about programmers",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.9007,
+          "ms": 90.29213100000015
+        }
+      ]
+    },
+    {
+      "model": "LAYA_MULTILINGUAL_322M_Q8_0",
+      "version": "v3",
+      "correct": 27,
+      "total": 40,
+      "avgMs": 61.93103379999993,
+      "preds": [
+        {
+          "text": "Turn off the lights in the living room",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9998,
+          "ms": 61.636398999999074
+        },
+        {
+          "text": "Switch off the heating in the bedroom",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9997,
+          "ms": 60.80226599999878
+        },
+        {
+          "text": "Remind me to buy milk tomorrow at 8",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.93,
+          "ms": 62.31224300000031
+        },
+        {
+          "text": "Set a timer for 12 minutes",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9938,
+          "ms": 61.790155999999115
+        },
+        {
+          "text": "Turn the thermostat up to 21 degrees",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9994,
+          "ms": 61.55636499999855
+        },
+        {
+          "text": "Open the garage door",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9985,
+          "ms": 58.571875999999975
+        },
+        {
+          "text": "Wake me up at 6:30 tomorrow",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9599,
+          "ms": 62.57471400000031
+        },
+        {
+          "text": "Lock the front door",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.998,
+          "ms": 58.87982400000146
+        },
+        {
+          "text": "Dim the kitchen lights to 30 percent",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9995,
+          "ms": 62.098024999999325
+        },
+        {
+          "text": "Start the robot vacuum",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9989,
+          "ms": 58.92495699999927
+        },
+        {
+          "text": "What's the weather in Geneva tomorrow?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.9157,
+          "ms": 62.03279900000052
+        },
+        {
+          "text": "Who won the Servette match last night?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.7428,
+          "ms": 61.818568000000596
+        },
+        {
+          "text": "Is the A1 motorway open right now near Lausanne?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.9179,
+          "ms": 63.58609500000057
+        },
+        {
+          "text": "What's the price of bitcoin right now?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.9669,
+          "ms": 62.86898099999962
+        },
+        {
+          "text": "What time does the supermarket in Carouge close today?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.5385,
+          "ms": 63.435325000000375
+        },
+        {
+          "text": "What is the latest news about the Swiss elections?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.9816,
+          "ms": 62.04136800000015
+        },
+        {
+          "text": "Is my 8:12 train to Zurich on time?",
+          "expected": "search",
+          "choice": "document",
+          "p": 0.46,
+          "ms": 64.68308499999875
+        },
+        {
+          "text": "Which films are showing at the cinema tonight?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.9711,
+          "ms": 61.79121599999962
+        },
+        {
+          "text": "What's today's euro to Swiss franc exchange rate?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.8459,
+          "ms": 64.30356199999915
+        },
+        {
+          "text": "Are there storm warnings for Geneva this weekend?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.9661,
+          "ms": 61.0590030000003
+        },
+        {
+          "text": "What does my car insurance policy say about windscreen damage?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.9077,
+          "ms": 63.739738999998735
+        },
+        {
+          "text": "When does the rental contract I uploaded expire?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.4858,
+          "ms": 61.50326600000153
+        },
+        {
+          "text": "Summarise the PDF from yesterday's meeting",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.8227,
+          "ms": 62.372401000000536
+        },
+        {
+          "text": "How much was my last electricity bill?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.4249,
+          "ms": 61.43913799999973
+        },
+        {
+          "text": "Find the warranty for my washing machine",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.703,
+          "ms": 61.17483199999879
+        },
+        {
+          "text": "What did the school letter say about the trip date?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.9924,
+          "ms": 62.54219900000135
+        },
+        {
+          "text": "List the action items from my notes of Monday's call",
+          "expected": "document",
+          "choice": "action",
+          "p": 0.9753,
+          "ms": 63.67894400000114
+        },
+        {
+          "text": "What's the notice period in my gym membership contract?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.5121,
+          "ms": 63.988728000000265
+        },
+        {
+          "text": "Which page of my boiler manual explains the reset?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.9866,
+          "ms": 62.31497099999979
+        },
+        {
+          "text": "What did I write in my notes about the garden fence?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.9967,
+          "ms": 63.76291299999866
+        },
+        {
+          "text": "Explain the difference between a mortgage and a loan",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.8087,
+          "ms": 62.04334600000038
+        },
+        {
+          "text": "Write me a short poem about autumn",
+          "expected": "chat",
+          "choice": "action",
+          "p": 0.9378,
+          "ms": 60.92855799999961
+        },
+        {
+          "text": "What's 17% of 240?",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.9418,
+          "ms": 64.94683099999929
+        },
+        {
+          "text": "Explain how a heat pump works",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.6893,
+          "ms": 60.43172699999923
+        },
+        {
+          "text": "Suggest a name for a black cat",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.5627,
+          "ms": 60.90381399999933
+        },
+        {
+          "text": "Translate \"good morning\" into Spanish",
+          "expected": "chat",
+          "choice": "action",
+          "p": 0.5587,
+          "ms": 60.81806400000096
+        },
+        {
+          "text": "Give me a recipe for mushroom risotto",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.6225,
+          "ms": 60.796511000000464
+        },
+        {
+          "text": "What is the capital of Australia?",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.9163,
+          "ms": 60.649730000001
+        },
+        {
+          "text": "Help me write a polite email declining an invitation",
+          "expected": "chat",
+          "choice": "document",
+          "p": 0.5444,
+          "ms": 61.8836480000009
+        },
+        {
+          "text": "Tell me a joke about programmers",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.9805,
+          "ms": 60.55516499999976
+        }
+      ]
+    },
+    {
+      "model": "LAYA_421M_Q8_0",
+      "version": "v1",
+      "correct": 27,
+      "total": 40,
+      "avgMs": 158.4766989500009,
+      "preds": [
+        {
+          "text": "Turn off the lights in the living room",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9527,
+          "ms": 178.86102799999935
+        },
+        {
+          "text": "Switch off the heating in the bedroom",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9648,
+          "ms": 155.23976799999946
+        },
+        {
+          "text": "Remind me to buy milk tomorrow at 8",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.5604,
+          "ms": 160.9356439999974
+        },
+        {
+          "text": "Set a timer for 12 minutes",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.8425,
+          "ms": 152.58158700000058
+        },
+        {
+          "text": "Turn the thermostat up to 21 degrees",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9714,
+          "ms": 155.50194300000294
+        },
+        {
+          "text": "Open the garage door",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9754,
+          "ms": 148.79481700000179
+        },
+        {
+          "text": "Wake me up at 6:30 tomorrow",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.7137,
+          "ms": 160.3026369999934
+        },
+        {
+          "text": "Lock the front door",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9516,
+          "ms": 146.07756100000552
+        },
+        {
+          "text": "Dim the kitchen lights to 30 percent",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9755,
+          "ms": 157.04830300000322
+        },
+        {
+          "text": "Start the robot vacuum",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9807,
+          "ms": 145.82462300000043
+        },
+        {
+          "text": "What's the weather in Geneva tomorrow?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.6468,
+          "ms": 155.30348800000502
+        },
+        {
+          "text": "Who won the Servette match last night?",
+          "expected": "search",
+          "choice": "chat",
+          "p": 0.5596,
+          "ms": 160.46296200000506
+        },
+        {
+          "text": "Is the A1 motorway open right now near Lausanne?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.9444,
+          "ms": 167.39157400000113
+        },
+        {
+          "text": "What's the price of bitcoin right now?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.9715,
+          "ms": 159.6681499999977
+        },
+        {
+          "text": "What time does the supermarket in Carouge close today?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.8463,
+          "ms": 160.99289500000305
+        },
+        {
+          "text": "What is the latest news about the Swiss elections?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.8824,
+          "ms": 158.20010999999795
+        },
+        {
+          "text": "Is my 8:12 train to Zurich on time?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.875,
+          "ms": 160.90762099999847
+        },
+        {
+          "text": "Which films are showing at the cinema tonight?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.7326,
+          "ms": 158.54799400000047
+        },
+        {
+          "text": "What's today's euro to Swiss franc exchange rate?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.876,
+          "ms": 164.25641099999484
+        },
+        {
+          "text": "Are there storm warnings for Geneva this weekend?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.8694,
+          "ms": 159.8427920000031
+        },
+        {
+          "text": "What does my car insurance policy say about windscreen damage?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.6224,
+          "ms": 158.60392500000307
+        },
+        {
+          "text": "When does the rental contract I uploaded expire?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.6795,
+          "ms": 159.40978399999585
+        },
+        {
+          "text": "Summarise the PDF from yesterday's meeting",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.8545,
+          "ms": 159.62762199999997
+        },
+        {
+          "text": "How much was my last electricity bill?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.8213,
+          "ms": 155.48804699999891
+        },
+        {
+          "text": "Find the warranty for my washing machine",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.9013,
+          "ms": 157.09776200000488
+        },
+        {
+          "text": "What did the school letter say about the trip date?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.3785,
+          "ms": 164.94678399999975
+        },
+        {
+          "text": "List the action items from my notes of Monday's call",
+          "expected": "document",
+          "choice": "chat",
+          "p": 0.5212,
+          "ms": 162.3153519999978
+        },
+        {
+          "text": "What's the notice period in my gym membership contract?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.7119,
+          "ms": 162.42743999999948
+        },
+        {
+          "text": "Which page of my boiler manual explains the reset?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.4558,
+          "ms": 158.6874850000022
+        },
+        {
+          "text": "What did I write in my notes about the garden fence?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.9457,
+          "ms": 168.9131680000064
+        },
+        {
+          "text": "Explain the difference between a mortgage and a loan",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.5163,
+          "ms": 157.93137600000045
+        },
+        {
+          "text": "Write me a short poem about autumn",
+          "expected": "chat",
+          "choice": "action",
+          "p": 0.6483,
+          "ms": 156.6301500000045
+        },
+        {
+          "text": "What's 17% of 240?",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.6154,
+          "ms": 159.3834100000022
+        },
+        {
+          "text": "Explain how a heat pump works",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.4389,
+          "ms": 154.68379599999753
+        },
+        {
+          "text": "Suggest a name for a black cat",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.3762,
+          "ms": 155.92298900000605
+        },
+        {
+          "text": "Translate \"good morning\" into Spanish",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.3858,
+          "ms": 154.2642080000005
+        },
+        {
+          "text": "Give me a recipe for mushroom risotto",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.4313,
+          "ms": 157.0832620000001
+        },
+        {
+          "text": "What is the capital of Australia?",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.9193,
+          "ms": 158.28079900000012
+        },
+        {
+          "text": "Help me write a polite email declining an invitation",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.3773,
+          "ms": 161.8598090000014
+        },
+        {
+          "text": "Tell me a joke about programmers",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.9408,
+          "ms": 148.76888200000394
+        }
+      ]
+    },
+    {
+      "model": "LAYA_421M_Q8_0",
+      "version": "v2",
+      "correct": 33,
+      "total": 40,
+      "avgMs": 242.3865679999999,
+      "preds": [
+        {
+          "text": "Turn off the lights in the living room",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9208,
+          "ms": 240.48014500000136
+        },
+        {
+          "text": "Switch off the heating in the bedroom",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.8142,
+          "ms": 241.0435839999991
+        },
+        {
+          "text": "Remind me to buy milk tomorrow at 8",
+          "expected": "action",
+          "choice": "document",
+          "p": 0.3037,
+          "ms": 247.14032399999996
+        },
+        {
+          "text": "Set a timer for 12 minutes",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.8439,
+          "ms": 236.44330600000103
+        },
+        {
+          "text": "Turn the thermostat up to 21 degrees",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9245,
+          "ms": 237.86959400000342
+        },
+        {
+          "text": "Open the garage door",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9365,
+          "ms": 232.04345400000602
+        },
+        {
+          "text": "Wake me up at 6:30 tomorrow",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.5929,
+          "ms": 247.599678999999
+        },
+        {
+          "text": "Lock the front door",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9428,
+          "ms": 234.17052699999476
+        },
+        {
+          "text": "Dim the kitchen lights to 30 percent",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9352,
+          "ms": 239.78375100000267
+        },
+        {
+          "text": "Start the robot vacuum",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.7767,
+          "ms": 234.94739000000118
+        },
+        {
+          "text": "What's the weather in Geneva tomorrow?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.5459,
+          "ms": 243.04930299999978
+        },
+        {
+          "text": "Who won the Servette match last night?",
+          "expected": "search",
+          "choice": "chat",
+          "p": 0.457,
+          "ms": 247.0785240000041
+        },
+        {
+          "text": "Is the A1 motorway open right now near Lausanne?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.6064,
+          "ms": 246.55632599999808
+        },
+        {
+          "text": "What's the price of bitcoin right now?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.789,
+          "ms": 239.98970700000064
+        },
+        {
+          "text": "What time does the supermarket in Carouge close today?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.5543,
+          "ms": 250.5320869999996
+        },
+        {
+          "text": "What is the latest news about the Swiss elections?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.7025,
+          "ms": 247.66469200000574
+        },
+        {
+          "text": "Is my 8:12 train to Zurich on time?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.3994,
+          "ms": 243.2870150000017
+        },
+        {
+          "text": "Which films are showing at the cinema tonight?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.6394,
+          "ms": 243.7335499999972
+        },
+        {
+          "text": "What's today's euro to Swiss franc exchange rate?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.4728,
+          "ms": 244.96968400000333
+        },
+        {
+          "text": "Are there storm warnings for Geneva this weekend?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.6191,
+          "ms": 246.08726799999567
+        },
+        {
+          "text": "What does my car insurance policy say about windscreen damage?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.3425,
+          "ms": 244.15144500000315
+        },
+        {
+          "text": "When does the rental contract I uploaded expire?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.4601,
+          "ms": 243.86751899999945
+        },
+        {
+          "text": "Summarise the PDF from yesterday's meeting",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.5347,
+          "ms": 246.35583000000042
+        },
+        {
+          "text": "How much was my last electricity bill?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.3702,
+          "ms": 238.79639499999757
+        },
+        {
+          "text": "Find the warranty for my washing machine",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.3741,
+          "ms": 239.66469900000084
+        },
+        {
+          "text": "What did the school letter say about the trip date?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.3483,
+          "ms": 246.9130589999986
+        },
+        {
+          "text": "List the action items from my notes of Monday's call",
+          "expected": "document",
+          "choice": "chat",
+          "p": 0.4452,
+          "ms": 247.17046699999628
+        },
+        {
+          "text": "What's the notice period in my gym membership contract?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.4745,
+          "ms": 249.44436499999574
+        },
+        {
+          "text": "Which page of my boiler manual explains the reset?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.3861,
+          "ms": 242.07489799999894
+        },
+        {
+          "text": "What did I write in my notes about the garden fence?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.5328,
+          "ms": 244.28525799999625
+        },
+        {
+          "text": "Explain the difference between a mortgage and a loan",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.4637,
+          "ms": 244.80042999999569
+        },
+        {
+          "text": "Write me a short poem about autumn",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.3989,
+          "ms": 242.31668999999965
+        },
+        {
+          "text": "What's 17% of 240?",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.341,
+          "ms": 241.62038299999404
+        },
+        {
+          "text": "Explain how a heat pump works",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.5124,
+          "ms": 240.90847599999688
+        },
+        {
+          "text": "Suggest a name for a black cat",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.3813,
+          "ms": 241.2819460000028
+        },
+        {
+          "text": "Translate \"good morning\" into Spanish",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.3685,
+          "ms": 241.28157900000224
+        },
+        {
+          "text": "Give me a recipe for mushroom risotto",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.4308,
+          "ms": 240.20118399999774
+        },
+        {
+          "text": "What is the capital of Australia?",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.4022,
+          "ms": 236.06255400000373
+        },
+        {
+          "text": "Help me write a polite email declining an invitation",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.4316,
+          "ms": 244.7019150000051
+        },
+        {
+          "text": "Tell me a joke about programmers",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.6692,
+          "ms": 235.09371799999644
+        }
+      ]
+    },
+    {
+      "model": "LAYA_421M_Q8_0",
+      "version": "v3",
+      "correct": 30,
+      "total": 40,
+      "avgMs": 153.63047242499943,
+      "preds": [
+        {
+          "text": "Turn off the lights in the living room",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.988,
+          "ms": 149.713036000001
+        },
+        {
+          "text": "Switch off the heating in the bedroom",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.984,
+          "ms": 151.74086200000602
+        },
+        {
+          "text": "Remind me to buy milk tomorrow at 8",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.4873,
+          "ms": 152.39757400000235
+        },
+        {
+          "text": "Set a timer for 12 minutes",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9665,
+          "ms": 146.64333500000066
+        },
+        {
+          "text": "Turn the thermostat up to 21 degrees",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9815,
+          "ms": 151.5248019999999
+        },
+        {
+          "text": "Open the garage door",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9809,
+          "ms": 143.75934499999858
+        },
+        {
+          "text": "Wake me up at 6:30 tomorrow",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.7262,
+          "ms": 155.16030799999862
+        },
+        {
+          "text": "Lock the front door",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9937,
+          "ms": 143.24686199999996
+        },
+        {
+          "text": "Dim the kitchen lights to 30 percent",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.9785,
+          "ms": 151.71557100000064
+        },
+        {
+          "text": "Start the robot vacuum",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.996,
+          "ms": 141.36759699999675
+        },
+        {
+          "text": "What's the weather in Geneva tomorrow?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.8621,
+          "ms": 151.56831000000238
+        },
+        {
+          "text": "Who won the Servette match last night?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.7474,
+          "ms": 156.39531700000225
+        },
+        {
+          "text": "Is the A1 motorway open right now near Lausanne?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.9431,
+          "ms": 162.177886999998
+        },
+        {
+          "text": "What's the price of bitcoin right now?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.9784,
+          "ms": 156.40444299999945
+        },
+        {
+          "text": "What time does the supermarket in Carouge close today?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.8862,
+          "ms": 157.3140560000029
+        },
+        {
+          "text": "What is the latest news about the Swiss elections?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.9016,
+          "ms": 153.26166899999953
+        },
+        {
+          "text": "Is my 8:12 train to Zurich on time?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.9185,
+          "ms": 156.6502479999981
+        },
+        {
+          "text": "Which films are showing at the cinema tonight?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.8347,
+          "ms": 156.46765699999378
+        },
+        {
+          "text": "What's today's euro to Swiss franc exchange rate?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.9027,
+          "ms": 160.58506800000032
+        },
+        {
+          "text": "Are there storm warnings for Geneva this weekend?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.9233,
+          "ms": 156.7050889999955
+        },
+        {
+          "text": "What does my car insurance policy say about windscreen damage?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.8452,
+          "ms": 158.28820799999812
+        },
+        {
+          "text": "When does the rental contract I uploaded expire?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.4502,
+          "ms": 157.02051399999618
+        },
+        {
+          "text": "Summarise the PDF from yesterday's meeting",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.9256,
+          "ms": 154.91293700000097
+        },
+        {
+          "text": "How much was my last electricity bill?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.7885,
+          "ms": 149.8053299999956
+        },
+        {
+          "text": "Find the warranty for my washing machine",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.9593,
+          "ms": 152.765459000002
+        },
+        {
+          "text": "What did the school letter say about the trip date?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.5912,
+          "ms": 159.17398599999433
+        },
+        {
+          "text": "List the action items from my notes of Monday's call",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.7449,
+          "ms": 161.08438600000227
+        },
+        {
+          "text": "What's the notice period in my gym membership contract?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.8491,
+          "ms": 159.62591500000417
+        },
+        {
+          "text": "Which page of my boiler manual explains the reset?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.7723,
+          "ms": 162.7674760000009
+        },
+        {
+          "text": "What did I write in my notes about the garden fence?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.9091,
+          "ms": 156.94405799999367
+        },
+        {
+          "text": "Explain the difference between a mortgage and a loan",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.5214,
+          "ms": 155.07564200000343
+        },
+        {
+          "text": "Write me a short poem about autumn",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.4415,
+          "ms": 153.83522200000152
+        },
+        {
+          "text": "What's 17% of 240?",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.8553,
+          "ms": 153.16464099999575
+        },
+        {
+          "text": "Explain how a heat pump works",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.4885,
+          "ms": 151.45213800000056
+        },
+        {
+          "text": "Suggest a name for a black cat",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.3928,
+          "ms": 152.17571199999657
+        },
+        {
+          "text": "Translate \"good morning\" into Spanish",
+          "expected": "chat",
+          "choice": "action",
+          "p": 0.3892,
+          "ms": 147.79059099999722
+        },
+        {
+          "text": "Give me a recipe for mushroom risotto",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.4796,
+          "ms": 150.62307899999723
+        },
+        {
+          "text": "What is the capital of Australia?",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.9495,
+          "ms": 151.23248700000113
+        },
+        {
+          "text": "Help me write a polite email declining an invitation",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.326,
+          "ms": 156.10296099999687
+        },
+        {
+          "text": "Tell me a joke about programmers",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.873,
+          "ms": 146.5791190000018
+        }
+      ]
+    },
+    {
+      "model": "LAYA_TYPED_DECISIONS_421M_Q8_0",
+      "version": "v1",
+      "correct": 30,
+      "total": 40,
+      "avgMs": 158.10313257499985,
+      "preds": [
+        {
+          "text": "Turn off the lights in the living room",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.7266,
+          "ms": 180.89334899999085
+        },
+        {
+          "text": "Switch off the heating in the bedroom",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.7288,
+          "ms": 157.3035530000052
+        },
+        {
+          "text": "Remind me to buy milk tomorrow at 8",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.5065,
+          "ms": 160.77867500000866
+        },
+        {
+          "text": "Set a timer for 12 minutes",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.5053,
+          "ms": 152.97486299999582
+        },
+        {
+          "text": "Turn the thermostat up to 21 degrees",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.7583,
+          "ms": 156.96017399999255
+        },
+        {
+          "text": "Open the garage door",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.769,
+          "ms": 146.95870499999728
+        },
+        {
+          "text": "Wake me up at 6:30 tomorrow",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.6089,
+          "ms": 159.88751699999557
+        },
+        {
+          "text": "Lock the front door",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.6687,
+          "ms": 149.77797500000452
+        },
+        {
+          "text": "Dim the kitchen lights to 30 percent",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.797,
+          "ms": 158.09850300000107
+        },
+        {
+          "text": "Start the robot vacuum",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.7899,
+          "ms": 146.37541399999463
+        },
+        {
+          "text": "What's the weather in Geneva tomorrow?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.4629,
+          "ms": 155.9808720000001
+        },
+        {
+          "text": "Who won the Servette match last night?",
+          "expected": "search",
+          "choice": "chat",
+          "p": 0.4828,
+          "ms": 160.5977120000025
+        },
+        {
+          "text": "Is the A1 motorway open right now near Lausanne?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.6489,
+          "ms": 165.76265199999034
+        },
+        {
+          "text": "What's the price of bitcoin right now?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.7735,
+          "ms": 158.6348239999934
+        },
+        {
+          "text": "What time does the supermarket in Carouge close today?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.5488,
+          "ms": 161.9070240000001
+        },
+        {
+          "text": "What is the latest news about the Swiss elections?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.6038,
+          "ms": 157.92006999999285
+        },
+        {
+          "text": "Is my 8:12 train to Zurich on time?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.4831,
+          "ms": 162.28293400000257
+        },
+        {
+          "text": "Which films are showing at the cinema tonight?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.5732,
+          "ms": 159.74444100000255
+        },
+        {
+          "text": "What's today's euro to Swiss franc exchange rate?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.627,
+          "ms": 162.1047499999986
+        },
+        {
+          "text": "Are there storm warnings for Geneva this weekend?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.5693,
+          "ms": 159.58840199999395
+        },
+        {
+          "text": "What does my car insurance policy say about windscreen damage?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.3928,
+          "ms": 164.345788000006
+        },
+        {
+          "text": "When does the rental contract I uploaded expire?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.4108,
+          "ms": 158.42597399999795
+        },
+        {
+          "text": "Summarise the PDF from yesterday's meeting",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.6052,
+          "ms": 158.8016440000065
+        },
+        {
+          "text": "How much was my last electricity bill?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.5797,
+          "ms": 152.64318800000183
+        },
+        {
+          "text": "Find the warranty for my washing machine",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.5233,
+          "ms": 155.95329800000763
+        },
+        {
+          "text": "What did the school letter say about the trip date?",
+          "expected": "document",
+          "choice": "chat",
+          "p": 0.3497,
+          "ms": 162.12918499999796
+        },
+        {
+          "text": "List the action items from my notes of Monday's call",
+          "expected": "document",
+          "choice": "chat",
+          "p": 0.612,
+          "ms": 162.23319800000172
+        },
+        {
+          "text": "What's the notice period in my gym membership contract?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.4902,
+          "ms": 162.12451300000248
+        },
+        {
+          "text": "Which page of my boiler manual explains the reset?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.4795,
+          "ms": 158.44158199999947
+        },
+        {
+          "text": "What did I write in my notes about the garden fence?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.6791,
+          "ms": 161.6017920000013
+        },
+        {
+          "text": "Explain the difference between a mortgage and a loan",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.3836,
+          "ms": 157.1983099999925
+        },
+        {
+          "text": "Write me a short poem about autumn",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.4376,
+          "ms": 153.64580600000045
+        },
+        {
+          "text": "What's 17% of 240?",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.319,
+          "ms": 154.9474210000044
+        },
+        {
+          "text": "Explain how a heat pump works",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.3924,
+          "ms": 156.15464700000302
+        },
+        {
+          "text": "Suggest a name for a black cat",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.4119,
+          "ms": 155.2307509999955
+        },
+        {
+          "text": "Translate \"good morning\" into Spanish",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.4189,
+          "ms": 154.7815499999997
+        },
+        {
+          "text": "Give me a recipe for mushroom risotto",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.3594,
+          "ms": 155.21484000000055
+        },
+        {
+          "text": "What is the capital of Australia?",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.6542,
+          "ms": 155.5316770000063
+        },
+        {
+          "text": "Help me write a polite email declining an invitation",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.4128,
+          "ms": 158.38899800000945
+        },
+        {
+          "text": "Tell me a joke about programmers",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.7203,
+          "ms": 151.79873199999565
+        }
+      ]
+    },
+    {
+      "model": "LAYA_TYPED_DECISIONS_421M_Q8_0",
+      "version": "v2",
+      "correct": 34,
+      "total": 40,
+      "avgMs": 242.0819408000003,
+      "preds": [
+        {
+          "text": "Turn off the lights in the living room",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.6156,
+          "ms": 238.81114800000796
+        },
+        {
+          "text": "Switch off the heating in the bedroom",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.5517,
+          "ms": 241.02769000000262
+        },
+        {
+          "text": "Remind me to buy milk tomorrow at 8",
+          "expected": "action",
+          "choice": "chat",
+          "p": 0.3464,
+          "ms": 244.27506299999368
+        },
+        {
+          "text": "Set a timer for 12 minutes",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.5492,
+          "ms": 232.71541100001195
+        },
+        {
+          "text": "Turn the thermostat up to 21 degrees",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.6354,
+          "ms": 240.49011800000153
+        },
+        {
+          "text": "Open the garage door",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.6371,
+          "ms": 231.15613399998983
+        },
+        {
+          "text": "Wake me up at 6:30 tomorrow",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.5125,
+          "ms": 242.80100700000185
+        },
+        {
+          "text": "Lock the front door",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.6354,
+          "ms": 228.22051099999226
+        },
+        {
+          "text": "Dim the kitchen lights to 30 percent",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.6434,
+          "ms": 241.69578100000217
+        },
+        {
+          "text": "Start the robot vacuum",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.4308,
+          "ms": 231.29108799999813
+        },
+        {
+          "text": "What's the weather in Geneva tomorrow?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.4565,
+          "ms": 240.17282899998827
+        },
+        {
+          "text": "Who won the Servette match last night?",
+          "expected": "search",
+          "choice": "chat",
+          "p": 0.4499,
+          "ms": 241.24180800000613
+        },
+        {
+          "text": "Is the A1 motorway open right now near Lausanne?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.4477,
+          "ms": 251.75073100000736
+        },
+        {
+          "text": "What's the price of bitcoin right now?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.5241,
+          "ms": 243.20994200000132
+        },
+        {
+          "text": "What time does the supermarket in Carouge close today?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.4495,
+          "ms": 246.07124100001238
+        },
+        {
+          "text": "What is the latest news about the Swiss elections?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.533,
+          "ms": 240.3463819999888
+        },
+        {
+          "text": "Is my 8:12 train to Zurich on time?",
+          "expected": "search",
+          "choice": "chat",
+          "p": 0.3734,
+          "ms": 248.1099089999916
+        },
+        {
+          "text": "Which films are showing at the cinema tonight?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.5132,
+          "ms": 242.10124299999734
+        },
+        {
+          "text": "What's today's euro to Swiss franc exchange rate?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.3749,
+          "ms": 247.94650900000124
+        },
+        {
+          "text": "Are there storm warnings for Geneva this weekend?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.5382,
+          "ms": 245.57669700001134
+        },
+        {
+          "text": "What does my car insurance policy say about windscreen damage?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.3584,
+          "ms": 247.12263399999938
+        },
+        {
+          "text": "When does the rental contract I uploaded expire?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.4123,
+          "ms": 245.82803400000557
+        },
+        {
+          "text": "Summarise the PDF from yesterday's meeting",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.5127,
+          "ms": 242.0424619999976
+        },
+        {
+          "text": "How much was my last electricity bill?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.3203,
+          "ms": 240.31635500000266
+        },
+        {
+          "text": "Find the warranty for my washing machine",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.3397,
+          "ms": 248.6851420000021
+        },
+        {
+          "text": "What did the school letter say about the trip date?",
+          "expected": "document",
+          "choice": "chat",
+          "p": 0.3773,
+          "ms": 248.50606900001003
+        },
+        {
+          "text": "List the action items from my notes of Monday's call",
+          "expected": "document",
+          "choice": "chat",
+          "p": 0.4321,
+          "ms": 249.41754299998865
+        },
+        {
+          "text": "What's the notice period in my gym membership contract?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.3609,
+          "ms": 251.47498500000802
+        },
+        {
+          "text": "Which page of my boiler manual explains the reset?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.3916,
+          "ms": 242.65975099999923
+        },
+        {
+          "text": "What did I write in my notes about the garden fence?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.487,
+          "ms": 249.0188380000036
+        },
+        {
+          "text": "Explain the difference between a mortgage and a loan",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.436,
+          "ms": 242.62623999999778
+        },
+        {
+          "text": "Write me a short poem about autumn",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.497,
+          "ms": 239.77356300000974
+        },
+        {
+          "text": "What's 17% of 240?",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.4195,
+          "ms": 239.19795099999465
+        },
+        {
+          "text": "Explain how a heat pump works",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.5076,
+          "ms": 241.12988799999584
+        },
+        {
+          "text": "Suggest a name for a black cat",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.4385,
+          "ms": 241.76143699999375
+        },
+        {
+          "text": "Translate \"good morning\" into Spanish",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.3654,
+          "ms": 238.88363300000492
+        },
+        {
+          "text": "Give me a recipe for mushroom risotto",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.4735,
+          "ms": 236.1215269999957
+        },
+        {
+          "text": "What is the capital of Australia?",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.3416,
+          "ms": 241.04241399999592
+        },
+        {
+          "text": "Help me write a polite email declining an invitation",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.4921,
+          "ms": 244.6902310000005
+        },
+        {
+          "text": "Tell me a joke about programmers",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.5233,
+          "ms": 233.9676929999987
+        }
+      ]
+    },
+    {
+      "model": "LAYA_TYPED_DECISIONS_421M_Q8_0",
+      "version": "v3",
+      "correct": 29,
+      "total": 40,
+      "avgMs": 153.6994389999989,
+      "preds": [
+        {
+          "text": "Turn off the lights in the living room",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.804,
+          "ms": 150.15093699999852
+        },
+        {
+          "text": "Switch off the heating in the bedroom",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.7883,
+          "ms": 151.61710499999754
+        },
+        {
+          "text": "Remind me to buy milk tomorrow at 8",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.4853,
+          "ms": 157.37523199999123
+        },
+        {
+          "text": "Set a timer for 12 minutes",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.6526,
+          "ms": 147.30430799999158
+        },
+        {
+          "text": "Turn the thermostat up to 21 degrees",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.7604,
+          "ms": 151.82058600000164
+        },
+        {
+          "text": "Open the garage door",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.7723,
+          "ms": 143.72409899999911
+        },
+        {
+          "text": "Wake me up at 6:30 tomorrow",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.6115,
+          "ms": 155.31915700000536
+        },
+        {
+          "text": "Lock the front door",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.8241,
+          "ms": 142.01772499999788
+        },
+        {
+          "text": "Dim the kitchen lights to 30 percent",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.79,
+          "ms": 152.60714600000938
+        },
+        {
+          "text": "Start the robot vacuum",
+          "expected": "action",
+          "choice": "action",
+          "p": 0.8315,
+          "ms": 144.1159340000013
+        },
+        {
+          "text": "What's the weather in Geneva tomorrow?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.5509,
+          "ms": 150.57481299999927
+        },
+        {
+          "text": "Who won the Servette match last night?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.5159,
+          "ms": 156.06332899999688
+        },
+        {
+          "text": "Is the A1 motorway open right now near Lausanne?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.6452,
+          "ms": 161.13874199999555
+        },
+        {
+          "text": "What's the price of bitcoin right now?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.7681,
+          "ms": 156.23058299999684
+        },
+        {
+          "text": "What time does the supermarket in Carouge close today?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.475,
+          "ms": 155.6476810000022
+        },
+        {
+          "text": "What is the latest news about the Swiss elections?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.6315,
+          "ms": 155.41620000000694
+        },
+        {
+          "text": "Is my 8:12 train to Zurich on time?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.5787,
+          "ms": 155.46782799999346
+        },
+        {
+          "text": "Which films are showing at the cinema tonight?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.6198,
+          "ms": 156.70489100000123
+        },
+        {
+          "text": "What's today's euro to Swiss franc exchange rate?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.5633,
+          "ms": 157.94342699999106
+        },
+        {
+          "text": "Are there storm warnings for Geneva this weekend?",
+          "expected": "search",
+          "choice": "search",
+          "p": 0.5843,
+          "ms": 153.88559499999974
+        },
+        {
+          "text": "What does my car insurance policy say about windscreen damage?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.5301,
+          "ms": 157.05025999998907
+        },
+        {
+          "text": "When does the rental contract I uploaded expire?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.3548,
+          "ms": 154.8163249999925
+        },
+        {
+          "text": "Summarise the PDF from yesterday's meeting",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.6997,
+          "ms": 157.5361750000011
+        },
+        {
+          "text": "How much was my last electricity bill?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.538,
+          "ms": 151.1426930000016
+        },
+        {
+          "text": "Find the warranty for my washing machine",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.6756,
+          "ms": 150.07577499999024
+        },
+        {
+          "text": "What did the school letter say about the trip date?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.3949,
+          "ms": 158.8822380000056
+        },
+        {
+          "text": "List the action items from my notes of Monday's call",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.4343,
+          "ms": 160.07137399999192
+        },
+        {
+          "text": "What's the notice period in my gym membership contract?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.513,
+          "ms": 157.20556200000283
+        },
+        {
+          "text": "Which page of my boiler manual explains the reset?",
+          "expected": "document",
+          "choice": "search",
+          "p": 0.4662,
+          "ms": 168.83042900000873
+        },
+        {
+          "text": "What did I write in my notes about the garden fence?",
+          "expected": "document",
+          "choice": "document",
+          "p": 0.7101,
+          "ms": 156.285727999988
+        },
+        {
+          "text": "Explain the difference between a mortgage and a loan",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.3934,
+          "ms": 156.15763900001184
+        },
+        {
+          "text": "Write me a short poem about autumn",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.4336,
+          "ms": 152.1417519999959
+        },
+        {
+          "text": "What's 17% of 240?",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.4456,
+          "ms": 151.47201299999142
+        },
+        {
+          "text": "Explain how a heat pump works",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.3868,
+          "ms": 151.35312400000112
+        },
+        {
+          "text": "Suggest a name for a black cat",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.4084,
+          "ms": 150.50112400000216
+        },
+        {
+          "text": "Translate \"good morning\" into Spanish",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.3741,
+          "ms": 150.4760690000112
+        },
+        {
+          "text": "Give me a recipe for mushroom risotto",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.4153,
+          "ms": 151.35386200000357
+        },
+        {
+          "text": "What is the capital of Australia?",
+          "expected": "chat",
+          "choice": "search",
+          "p": 0.6858,
+          "ms": 153.43991699999606
+        },
+        {
+          "text": "Help me write a polite email declining an invitation",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.3676,
+          "ms": 155.99715399999695
+        },
+        {
+          "text": "Tell me a joke about programmers",
+          "expected": "chat",
+          "choice": "chat",
+          "p": 0.6603,
+          "ms": 148.0630289999972
+        }
+      ]
+    }
+  ]
+}

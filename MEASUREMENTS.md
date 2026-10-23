@@ -139,3 +139,52 @@ Setup: `qvac serve --openai --no-default` on omen01, models declared in `serve.m
 
 - omen01: `qvac serve --openai --no-default --host 127.0.0.1 --port 11434 --api-key-file …`, Qwen3.6 35B-A3B (`reasoning_budget: 0`) and Qwen3 4B on CPU, published inside the tailnet only with `tailscale serve --https=443`.
 - Clients: ChatterUI on the phone over Tailscale, Open WebUI on chiaminer01 with a knowledge base synced from a folder.
+
+## 8. SDK 0.22 (23 October 2026)
+
+### Upgrade notes
+
+- On the Legion (Windows), Node 22.13 still ran the SDK; `qvac bundle` needs `^22.21.0 || >=24.9.0`. Upgraded with `winget upgrade OpenJS.NodeJS.22`.
+- `modelConfig.backend` must be an array (`['cuda']`). The release-notes example passes a string (`'cuda,vulkan'`), which fails validation.
+- On the Legion, the registry download of Laya failed with "Invalid device file, was modified", the same error as the Qwen3 4B on 9 October. The message now suggests `fallbackSrc`.
+- `fallbackSrc` only accepts a file identical to the registry one: the ggml-org Laya GGUF failed the checksum. Loaded directly as a path, it failed with "expected a laya model, got 'modern-bert'" (a different conversion).
+- The same models downloaded without problems on omen01 (Linux), so the Laya tests below ran there, in a separate folder so the running `qvac serve` (0.21) was not touched.
+
+### CUDA vs Vulkan (Legion, Qwen3 4B Q4_K_M, `/no_think`)
+
+| Backend | Load | First prompt TTFT | Later TTFT | Generation |
+| --- | --- | --- | --- | --- |
+| `['cuda']` | 10.3 s | 1.45 s | ~50 ms | ~79–80 tok/s |
+| `['vulkan']` | 8.2 s | 72 ms | ~50 ms | ~76–80 tok/s |
+
+- No generation gain from CUDA on a 4B model: the limit is memory bandwidth, as in section 3.
+- CUDA has a heavier first-prompt warm-up.
+- The SDK stats only report `backendDevice: "gpu"`, so the run does not confirm which backend actually ran.
+
+### Laya as a router for a home assistant (omen01, CPU)
+
+Idea: before calling an LLM, a small decision model classifies each request as **action** (control the home, set a reminder), **search** (needs live internet data), **document** (about the user's own files) or **chat** (general knowledge, writing, maths). One `choice` question per request; three phrasings of the criteria:
+
+- v1: short first attempt;
+- v2: detailed descriptions with examples;
+- v3: short descriptions of equal length, no examples.
+
+**First run, 12 requests (multilingual 322M):** v1 9/12, v2 7/12. The detailed v2 looked worse.
+
+**Second run, 40 requests (10 per intent), three models × three phrasings** (`laya-bench.js`, raw data in `omen01/laya-bench-omen01-2026-10-23.json`):
+
+| Model | v1 | v2 | v3 | ms per decision |
+| --- | --- | --- | --- | --- |
+| Laya multilingual 322M | 27/40 | 25/40 | 27/40 | 62–95 |
+| Laya 421M | 27/40 | 33/40 | 30/40 | 154–242 |
+| Laya typed decisions 421M | 30/40 | 34/40 | 29/40 | 154–242 |
+
+- The 12-case run pointed the wrong way: the detailed v2 hurts the small multilingual model but clearly helps both 421M models.
+- Confidence matters more than accuracy, and its scale differs by checkpoint:
+  - the multilingual 322M is often confidently wrong (wrong answers up to 95–98%), so no threshold makes it safe;
+  - with v2, both 421M models keep wrong answers low (highest wrong answer at 45–46%). With a threshold of 0.45–0.5 they route about 20 of 40 requests immediately with no errors, and hand the other 20 to an LLM;
+  - typed decisions spreads probabilities across options, so a 0.7 threshold would hand off every request. Thresholds have to be calibrated per model.
+- Longer criteria cost time: ~155 → ~240 ms per decision, still below the Qwen3 4B time to first token on the same machine (~350 ms).
+- All six errors of the best combination (typed decisions, v2) went to "chat", with 34–45% confidence.
+- `decide()` with `states` (batch) took ~186 ms per request, slower than sequential calls (~139 ms).
+- Limits: 40 hand-written requests, one run, English only.

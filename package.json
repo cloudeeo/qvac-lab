@@ -14,6 +14,6 @@
   "description": "Hands-on benchmarks of the QVAC SDK (Tether) on home hardware: CPU vs GPU, model sizes, RPC vs HTTP.",
   "type": "module",
   "dependencies": {
-    "@qvac/sdk": "^0.21.0"
+    "@qvac/sdk": "^0.22.0"
   }
 }

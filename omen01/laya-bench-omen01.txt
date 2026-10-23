@@ -1,0 +1,66 @@
+Device: cpu | CPU: Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz x16 | 40 requests | threshold 0.7 | fast path 0.9
+
+LAYA_MULTILINGUAL_322M_Q8_0: loaded in 3.7 s
+  v1: 27/40
+  v2: 25/40
+  v3: 27/40
+[QVACRegistryClient] [INFO] Downloading blob directly {
+  coreKey: 'dcfc2187d23e...',
+  blockOffset: 1733874,
+  blockLength: 6866,
+  byteLength: 449919008
+}
+[QVACRegistryClient] [INFO] Cleared blob blocks from corestore { start: 1733874, end: 1740740, blocks: 0 }
+[QVACRegistryClient] [INFO] Blob download complete (direct)
+
+LAYA_421M_Q8_0: loaded in 29.2 s
+  v1: 27/40
+  v2: 33/40
+  v3: 30/40
+[QVACRegistryClient] [INFO] Downloading blob directly {
+  coreKey: 'dcfc2187d23e...',
+  blockOffset: 1768866,
+  blockLength: 6866,
+  byteLength: 449919104
+}
+[QVACRegistryClient] [INFO] Cleared blob blocks from corestore { start: 1768866, end: 1775732, blocks: 0 }
+[QVACRegistryClient] [INFO] Blob download complete (direct)
+
+LAYA_TYPED_DECISIONS_421M_Q8_0: loaded in 23.6 s
+  v1: 30/40
+  v2: 34/40
+  v3: 29/40
+
+Summary
+┌─────────┬─────────────────────────────┬─────────┬──────────┬─────────┬─────────┬──────────┬────────┬───────────┬────────────┬──────────────────┬────────┐
+│ (index) │ model                       │ version │ accuracy │ action  │ search  │ document │ chat   │ asks user │ acts wrong │ fast path        │ avg ms │
+├─────────┼─────────────────────────────┼─────────┼──────────┼─────────┼─────────┼──────────┼────────┼───────────┼────────────┼──────────────────┼────────┤
+│ 0       │ 'LAYA_MULTILINGUAL_322M'    │ 'v1'    │ '27/40'  │ '10/10' │ '8/10'  │ '7/10'   │ '2/10' │ 13        │ 6          │ '9 ok, 1 wrong'  │ 65     │
+│ 1       │ 'LAYA_MULTILINGUAL_322M'    │ 'v2'    │ '25/40'  │ '9/10'  │ '5/10'  │ '10/10'  │ '1/10' │ 13        │ 5          │ '7 ok, 0 wrong'  │ 95     │
+│ 2       │ 'LAYA_MULTILINGUAL_322M'    │ 'v3'    │ '27/40'  │ '10/10' │ '9/10'  │ '5/10'   │ '3/10' │ 10        │ 6          │ '10 ok, 2 wrong' │ 62     │
+│ 3       │ 'LAYA_421M'                 │ 'v1'    │ '27/40'  │ '10/10' │ '9/10'  │ '2/10'   │ '6/10' │ 16        │ 4          │ '7 ok, 0 wrong'  │ 158    │
+│ 4       │ 'LAYA_421M'                 │ 'v2'    │ '33/40'  │ '9/10'  │ '9/10'  │ '6/10'   │ '9/10' │ 30        │ 0          │ '5 ok, 0 wrong'  │ 242    │
+│ 5       │ 'LAYA_421M'                 │ 'v3'    │ '30/40'  │ '10/10' │ '10/10' │ '3/10'   │ '7/10' │ 10        │ 7          │ '8 ok, 0 wrong'  │ 154    │
+│ 6       │ 'LAYA_TYPED_DECISIONS_421M' │ 'v1'    │ '30/40'  │ '10/10' │ '9/10'  │ '4/10'   │ '7/10' │ 32        │ 0          │ '0 ok, 0 wrong'  │ 158    │
+│ 7       │ 'LAYA_TYPED_DECISIONS_421M' │ 'v2'    │ '34/40'  │ '9/10'  │ '8/10'  │ '8/10'   │ '9/10' │ 40        │ 0          │ '0 ok, 0 wrong'  │ 242    │
+│ 8       │ 'LAYA_TYPED_DECISIONS_421M' │ 'v3'    │ '29/40'  │ '10/10' │ '10/10' │ '3/10'   │ '6/10' │ 31        │ 0          │ '0 ok, 0 wrong'  │ 154    │
+└─────────┴─────────────────────────────┴─────────┴──────────┴─────────┴─────────┴──────────┴────────┴───────────┴────────────┴──────────────────┴────────┘
+
+Confusion matrix for the best combination: LAYA_TYPED_DECISIONS_421M_Q8_0 v2 (rows = expected, columns = predicted)
+┌──────────┬────────┬────────┬──────────┬──────┐
+│ (index)  │ action │ search │ document │ chat │
+├──────────┼────────┼────────┼──────────┼──────┤
+│ action   │ 9      │ 0      │ 0        │ 1    │
+│ search   │ 0      │ 8      │ 0        │ 2    │
+│ document │ 0      │ 0      │ 8        │ 2    │
+│ chat     │ 0      │ 1      │ 0        │ 9    │
+└──────────┴────────┴────────┴──────────┴──────┘
+Errors of the best combination:
+  "Remind me to buy milk tomorrow at 8" -> chat 35% (expected action)
+  "Who won the Servette match last night?" -> chat 45% (expected search)
+  "Is my 8:12 train to Zurich on time?" -> chat 37% (expected search)
+  "What did the school letter say about the trip date?" -> chat 38% (expected document)
+  "List the action items from my notes of Monday's call" -> chat 43% (expected document)
+  "What is the capital of Australia?" -> search 34% (expected chat)
+
+All predictions saved to laya-bench-omen01-2026-10-23.json

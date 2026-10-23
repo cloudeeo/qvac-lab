@@ -1,6 +1,6 @@
 # qvac-lab
 
-Hands-on measurements of Tether's [QVAC SDK](https://github.com/tetherto/qvac) (`@qvac/sdk` 0.21) on four home machines, from a Pentium NUC without AVX to a Ryzen laptop with a discrete GPU. October 2026.
+Hands-on measurements of Tether's [QVAC SDK](https://github.com/tetherto/qvac) (`@qvac/sdk` 0.21 and 0.22) on four home machines, from a Pentium NUC without AVX to a Ryzen laptop with a discrete GPU. October 2026.
 
 This is a personal lab, not affiliated with Tether. Each figure comes from a few runs of three prompts: good for orders of magnitude, not a rigorous benchmark. The full log, with every run and the reasoning behind it, is in [`MEASUREMENTS.md`](MEASUREMENTS.md). Issues met while setting up the SDK, with suggestions, are in [`SDK-FEEDBACK.md`](SDK-FEEDBACK.md).
 
@@ -41,6 +41,8 @@ This is a personal lab, not affiliated with Tether. Each figure comes from a few
 
 RPC was slower than running locally, even with omen01 calling its own RPC server, so the cost is in the RPC path, not the network. RPC is for pooling memory across machines, not for speed.
 
+**A small decision model can route requests, if its confidence is calibrated.** SDK 0.22 added Laya, a model that answers typed questions instead of writing text. Used as a router for a home assistant (action, search, document or chat), Laya typed decisions 421M got 34 of 40 requests right at ~240 ms on CPU. With a 0.45 confidence threshold it routed half the requests immediately with no errors and handed the rest to an LLM. A first run on 12 requests had pointed to the opposite conclusion.
+
 **No safety check before loading.** A 27B model (17.6 GB) loaded on a 32 GB laptop with other apps open and froze the machine. `assessModelFit` exists in the SDK but is not part of the default flow.
 
 ## Scripts
@@ -51,6 +53,8 @@ RPC was slower than running locally, even with omen01 calling its own RPC server
 | `http-bench.js` | Same prompts against any OpenAI-compatible server (e.g. `qvac serve`), streaming; no SDK needed |
 | `rpc-serve.js` | Starts a llama.cpp RPC server through the SDK, with LAN discovery |
 | `rpc-client.js` | Loads a model on the local machine with its layers on the RPC server |
+| `laya-test.js` | SDK 0.22: Laya as a home-assistant router on 12 requests, two phrasings side by side |
+| `laya-bench.js` | SDK 0.22: three Laya models × three phrasings on 40 labelled requests, with confidence analysis and a JSON of every prediction |
 | `<machine>/` | Raw output of the runs, one folder per machine |
 
 ### measure.js

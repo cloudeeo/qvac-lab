@@ -1,0 +1,24 @@
+Model: LAYA_MULTILINGUAL_322M_Q8_0 | device: cpu | CPU: Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz x16 | threshold: 0.7
+download/load: {"type":"modelProgress","downloaded":348425664,"total":348425664,"percentage":10   
+Load time: 4.0 s
+┌─────────┬────────────────────────────────────────────┬────────────┬────────────────┬────────────────┬───────┬───────┬────────────┬────────┬────────┬───────┐
+│ (index) │ request                                    │ expected   │ v1             │ v2             │ v1 ok │ v2 ok │ v2 route   │ web v1 │ web v2 │ v2 ms │
+├─────────┼────────────────────────────────────────────┼────────────┼────────────────┼────────────────┼───────┼───────┼────────────┼────────┼────────┼───────┤
+│ 0       │ 'Turn off the lights in the living room'   │ 'action'   │ 'action 100%'  │ 'action 100%'  │ 'yes' │ 'yes' │ 'action'   │ '2%'   │ '25%'  │ 138   │
+│ 1       │ 'Switch off the heating in the bedroom'    │ 'action'   │ 'action 100%'  │ 'action 100%'  │ 'yes' │ 'yes' │ 'action'   │ '7%'   │ '16%'  │ 136   │
+│ 2       │ 'Remind me to buy milk tomorrow at 8'      │ 'action'   │ 'action 94%'   │ 'action 61%'   │ 'yes' │ 'yes' │ 'ask user' │ '0%'   │ '2%'   │ 138   │
+│ 3       │ "What's the weather in Geneva tomorrow?"   │ 'search'   │ 'search 68%'   │ 'search 80%'   │ 'yes' │ 'yes' │ 'search'   │ '1%'   │ '2%'   │ 141   │
+│ 4       │ 'Who won the Servette match last night?'   │ 'search'   │ 'search 54%'   │ 'document 83%' │ 'yes' │ 'NO'  │ 'document' │ '4%'   │ '58%'  │ 137   │
+│ 5       │ 'Is the A1 motorway open right now near L' │ 'search'   │ 'search 91%'   │ 'document 61%' │ 'yes' │ 'NO'  │ 'ask user' │ '76%'  │ '1%'   │ 141   │
+│ 6       │ 'What does my car insurance policy say ab' │ 'document' │ 'search 88%'   │ 'document 98%' │ 'NO'  │ 'yes' │ 'document' │ '79%'  │ '1%'   │ 140   │
+│ 7       │ 'When does the rental contract I uploaded' │ 'document' │ 'document 91%' │ 'document 99%' │ 'yes' │ 'yes' │ 'document' │ '2%'   │ '1%'   │ 138   │
+│ 8       │ "Summarise the PDF from yesterday's meeti" │ 'document' │ 'document 97%' │ 'document 89%' │ 'yes' │ 'yes' │ 'document' │ '0%'   │ '5%'   │ 138   │
+│ 9       │ 'Explain the difference between a mortgag' │ 'chat'     │ 'chat 83%'     │ 'document 83%' │ 'yes' │ 'NO'  │ 'document' │ '0%'   │ '1%'   │ 138   │
+│ 10      │ 'Write me a short poem about autumn'       │ 'chat'     │ 'action 58%'   │ 'action 63%'   │ 'NO'  │ 'NO'  │ 'ask user' │ '0%'   │ '1%'   │ 135   │
+│ 11      │ "What's 17% of 240?"                       │ 'chat'     │ 'search 68%'   │ 'document 55%' │ 'NO'  │ 'NO'  │ 'ask user' │ '4%'   │ '1%'   │ 150   │
+└─────────┴────────────────────────────────────────────┴────────────┴────────────────┴────────────────┴───────┴───────┴────────────┴────────┴────────┴───────┘
+Correct intent: v1 9/12, v2 7/12
+Average latency per request: v1 101 ms, v2 139 ms
+v2 with threshold 0.7: asks the user 4/12 times, acts on a wrong intent 2/12 times
+v2 batch of 12: 2232 ms total, 186 ms per request
+Batch result is an array of 12

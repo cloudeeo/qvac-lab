@@ -66,9 +66,26 @@ Native clients and curl work fine.
 
 **15. No `usage` in responses.** `/v1/chat/completions` does not return token counts, so clients cannot measure or display usage.
 
+## Found while testing 0.22.0 (23 October 2026)
+
+Two items above are partly addressed in 0.22: `modelFitPolicy: 'refuse'` gives an opt-in check before loading (item 2, not yet tested here), and `backend` accepts an ordered list (item 3). The registry error now suggests `fallbackSrc` (item 1).
+
+**16. `backend` type differs from the release notes.** The example passes `backend: 'cuda,vulkan'`; the SDK requires an array and fails with "expected array, received string".
+
+**17. Stats do not say which GPU backend ran.** `backendDevice` is `"gpu"` for both CUDA and Vulkan runs, so a benchmark cannot confirm the backend actually used.
+
+**18. Registry download still fails on Windows.** Laya failed on the Legion with "Invalid device file, was modified", like the Qwen3 4B on 0.21; the same models downloaded fine on Linux.
+
+**19. `fallbackSrc` must be byte-identical to the registry file.** A GGUF of the same model from another publisher fails with "Checksum validation failed" and no hint why. Saying "the fallback must match the registry checksum" in the error would save time.
+
+**20. Laya confidence scales differ by checkpoint.** In a 40-request routing test, the multilingual 322M was often confidently wrong (up to 95–98%), while typed decisions 421M kept every answer below 70%, right or wrong. A note on calibration, or recommended thresholds per checkpoint, would help anyone using `decide()` for routing.
+
+**21. Batch `decide()` was slower per request than sequential calls** (~186 ms vs ~139 ms per request, 12 states, CPU).
+
 ## What worked well
 
 - One SDK for LLM, embeddings, speech and RAG, with the same calls on Linux and Windows.
 - Models run on a Pentium without AVX.
 - `fallbackSrc` made a failing registry download recoverable in one line.
+- `decide()` is simple to use: a router over four intents took a few lines, at 60–240 ms per decision on a desktop CPU.
 - `qvac serve` with an API key, published over Tailscale HTTPS, gave phones and Open WebUI access to a 35B MoE model on a desktop CPU at ~11 tok/s.

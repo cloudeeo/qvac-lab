@@ -70,7 +70,7 @@ Native clients and curl work fine.
 
 Two items above are partly addressed in 0.22: `modelFitPolicy: 'refuse'` gives an opt-in check before loading (item 2, not yet tested here), and `backend` accepts an ordered list (item 3). The registry error now suggests `fallbackSrc` (item 1).
 
-**16. `backend` type differs from the release notes.** The example passes `backend: 'cuda,vulkan'`; the SDK requires an array and fails with "expected array, received string".
+**16. `backend` type differs from the release notes.** The example passes `backend: 'cuda,vulkan'`; the SDK requires an array and fails with "expected array, received string". Reported as [tetherto/qvac#5345](https://github.com/tetherto/qvac/issues/5345).
 
 **17. Stats do not say which GPU backend ran.** `backendDevice` is `"gpu"` for both CUDA and Vulkan runs, so a benchmark cannot confirm the backend actually used.
 

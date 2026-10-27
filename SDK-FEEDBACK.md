@@ -74,7 +74,7 @@ Two items above are partly addressed in 0.22: `modelFitPolicy: 'refuse'` gives a
 
 **17. Stats do not say which GPU backend ran.** `backendDevice` is `"gpu"` for both CUDA and Vulkan runs, so a benchmark cannot confirm the backend actually used.
 
-**18. Registry download still fails on Windows.** Laya failed on the Legion with "Invalid device file, was modified", like the Qwen3 4B on 0.21; the same models downloaded fine on Linux.
+**18. Registry download still fails on Windows, because of the local store.** Laya failed on the Legion with "Invalid device file, was modified", like the Qwen3 4B on 0.21; the same models downloaded fine on Linux. The 0.22 error blames the network, but the cause was the local store: renaming `%USERPROFILE%\.qvac` fixed it at once. Reported as [tetherto/qvac#5407](https://github.com/tetherto/qvac/issues/5407).
 
 **19. `fallbackSrc` must be byte-identical to the registry file.** A GGUF of the same model from another publisher fails with "Checksum validation failed" and no hint why. Saying "the fallback must match the registry checksum" in the error would save time.
 

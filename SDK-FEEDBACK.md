@@ -33,9 +33,9 @@ After `unloadModel` on the UHD 630, used RAM stayed at 4.2 GB, against 1.3 GB af
 
 ## Distributed inference
 
-**8. Delegated inference was removed, but the public material still describes it.**
-The 0.19.0 changelog says "Provider mode and DHT delegation are gone", while the website and intro pages still present P2P delegation as a QVAC feature. No reason or migration path was found.
-*Would help:* a short "using another device" page that says what is supported today (llama.cpp RPC, `qvac serve`) and what is planned.
+**8. Where delegated inference lives was hard to find.**
+The 0.19.0 changelog says "Provider mode and DHT delegation are gone", and in October 2026 the SDK docs did not say where it went. *Update, 30 October 2026:* QVAC's "Local AI 101" part 4 says delegated inference is available in the separate `@qvac/core` package (devices paired by invite, encrypted peer-to-peer link). Not tested here yet.
+*Would help:* a short "using another device" page that lists the options side by side: `qvac serve` over HTTP, delegated inference in `@qvac/core`, and cluster inference over the local network, with when to use each.
 
 **9. RPC setup needs several undocumented steps.** They surfaced one error at a time:
 - `startRpcServer` rejects `0.0.0.0` and needs a concrete private IPv4 address;
@@ -70,11 +70,11 @@ Native clients and curl work fine.
 
 Two items above are partly addressed in 0.22: `modelFitPolicy: 'refuse'` gives an opt-in check before loading (item 2, not yet tested here), and `backend` accepts an ordered list (item 3). The registry error now suggests `fallbackSrc` (item 1).
 
-**16. `backend` type differs from the release notes.** The example passes `backend: 'cuda,vulkan'`; the SDK requires an array and fails with "expected array, received string". Reported as [tetherto/qvac#5345](https://github.com/tetherto/qvac/issues/5345).
+**16. `backend` type differs from the release notes.** The example passes `backend: 'cuda,vulkan'`; the SDK requires an array and fails with "expected array, received string". Reported as [tetherto/qvac#5345](https://github.com/tetherto/qvac/issues/5345); confirmed by the QVAC team, who are fixing the release notes.
 
 **17. Stats do not say which GPU backend ran.** `backendDevice` is `"gpu"` for both CUDA and Vulkan runs, so a benchmark cannot confirm the backend actually used.
 
-**18. Registry download still fails on Windows, because of the local store.** Laya failed on the Legion with "Invalid device file, was modified", like the Qwen3 4B on 0.21; the same models downloaded fine on Linux. The 0.22 error blames the network, but the cause was the local store: renaming `%USERPROFILE%\.qvac` fixed it at once. Reported as [tetherto/qvac#5407](https://github.com/tetherto/qvac/issues/5407).
+**18. Registry download still fails on Windows, because of the local store.** Laya failed on the Legion with "Invalid device file, was modified", like the Qwen3 4B on 0.21; the same models downloaded fine on Linux. The 0.22 error blames the network, but the cause was the local store: renaming `%USERPROFILE%\.qvac` fixed it at once. Reported as [tetherto/qvac#5407](https://github.com/tetherto/qvac/issues/5407). The QVAC team confirmed the cause: the registry keeps a Hypercore store in `.qvac\registry-corestore` that refuses to open if it looks moved or copied. Deleting only that folder is enough (models in `.qvac\models` stay), and a fix that resets the store automatically is in review ([tetherto/qvac#5408](https://github.com/tetherto/qvac/pull/5408)).
 
 **19. `fallbackSrc` must be byte-identical to the registry file.** A GGUF of the same model from another publisher fails with "Checksum validation failed" and no hint why. Saying "the fallback must match the registry checksum" in the error would save time.
 

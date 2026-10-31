@@ -187,4 +187,5 @@ Idea: before calling an LLM, a small decision model classifies each request as *
 - Longer criteria cost time: ~155 → ~240 ms per decision, still below the Qwen3 4B time to first token on the same machine (~350 ms).
 - All six errors of the best combination (typed decisions, v2) went to "chat", with 34–45% confidence.
 - `decide()` with `states` (batch) took ~186 ms per request, slower than sequential calls (~139 ms).
+- Asking two questions in one `decide()` call (intent + device, typed decisions 421M) took ~373 ms for a command, the same as two separate calls (~268 + ~144 ms after warm-up). The cost grows with the questions asked, so a router should ask the second question only when it is needed.
 - Limits: 40 hand-written requests, one run, English only.

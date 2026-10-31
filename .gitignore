@@ -38,3 +38,7 @@ desktop.ini
 
 # Personal lab notes (Italian), kept local
 misure.md
+*.avi
+*.mp4
+voice-out/
+voice-in/

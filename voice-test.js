@@ -61,8 +61,10 @@ const TTS_ENGINES = {
   chatterbox: { src: TTS_T3_MULTILINGUAL_CHATTERBOX_Q4_0, config: { ttsEngine: 'chatterbox', s3genModelSrc: TTS_S3GEN_MULTILINGUAL_CHATTERBOX_Q4_0, cfmSteps: 1, threads: THREADS } },
 }
 const STT_MODELS = {
-  'whisper-small': { src: WHISPER_SMALL_Q8_0, config: { language: STT_LANG, strategy: 'greedy', n_threads: THREADS, temperature: 0, translate: false, no_timestamps: true } },
-  'whisper-turbo': { src: WHISPER_LARGE_V3_TURBO, config: { language: STT_LANG, strategy: 'greedy', n_threads: THREADS, temperature: 0, translate: false, no_timestamps: true } },
+  // Whisper files are the same ones the registry mirrors from Hugging Face (same commit, same checksum),
+  // so the direct URL works as a fallback when the registry download times out.
+  'whisper-small': { src: WHISPER_SMALL_Q8_0, fallback: 'https://huggingface.co/ggerganov/whisper.cpp/resolve/5359861c739e955e79d9a303bcbc70fb988958b1/ggml-small-q8_0.bin', config: { language: STT_LANG, strategy: 'greedy', n_threads: THREADS, temperature: 0, translate: false, no_timestamps: true } },
+  'whisper-turbo': { src: WHISPER_LARGE_V3_TURBO, fallback: 'https://huggingface.co/ggerganov/whisper.cpp/resolve/5359861c739e955e79d9a303bcbc70fb988958b1/ggml-large-v3-turbo.bin', config: { language: STT_LANG, strategy: 'greedy', n_threads: THREADS, temperature: 0, translate: false, no_timestamps: true } },
   parakeet: { src: PARAKEET_TDT_0_6B_V3_Q8_0, type: 'parakeet-transcription', config: {} },
 }
 const pick = (list, all) => (list ? list.split(',').map((s) => s.trim()) : Object.keys(all)).filter((k) => all[k])
@@ -144,7 +146,7 @@ for (const name of pick(env.STT, STT_MODELS)) {
   const m = STT_MODELS[name]
   console.log(`\n=== STT ${name} (language: ${name === "parakeet" ? "auto" : STT_LANG}) ===`)
   let t = performance.now()
-  const modelId = await loadModel({ modelSrc: m.src, ...(m.type ? { modelType: m.type } : {}), modelConfig: m.config, onProgress: progress })
+  const modelId = await loadModel({ modelSrc: m.src, ...(m.fallback ? { fallbackSrc: env[`SRC_${name.replace('-', '_').toUpperCase()}`] || m.fallback } : {}), ...(m.type ? { modelType: m.type } : {}), modelConfig: m.config, onProgress: progress })
   console.log(`\n  loaded in ${((performance.now() - t) / 1000).toFixed(1)} s`)
   for (const c of clips) {
     t = performance.now()

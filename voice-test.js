@@ -5,12 +5,13 @@
 //
 // Usage:  node voice-test.js                     # Italian, all engines
 //         LANG_CODE=fr node voice-test.js         # French sentences
+//         LANG_CODE=it,fr node voice-test.js      # bilingual household: both sets, speech models detect the language
 //         TTS=supertonic STT=parakeet,whisper-small node voice-test.js
 // Your own recordings: put 16 kHz mono WAV files in voice-in/ and, next to each, a .txt file with what you said
 // (e.g. voice-in/homework.wav + voice-in/homework.txt). Phones usually record at 44.1/48 kHz: convert with
 //   ffmpeg -i rec.m4a -ar 16000 -ac 1 voice-in/rec.wav
 //
-// Env: LANG_CODE (it | fr | en), TTS (supertonic,chatterbox), STT (whisper-small,whisper-turbo,parakeet), THREADS
+// Env: LANG_CODE (it | fr | en, or a list such as it,fr), STT_LANG (default: the language, or auto for a list), TTS (supertonic,chatterbox), STT (whisper-small,whisper-turbo,parakeet), THREADS
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
@@ -22,13 +23,15 @@ import {
 } from '@qvac/sdk'
 
 const env = process.env
-const LANG = env.LANG_CODE || 'it'
+const LANGS = (env.LANG_CODE || 'it').split(',').map((s) => s.trim())
+const LANG = LANGS.join('+')
+const STT_LANG = env.STT_LANG || (LANGS.length > 1 ? 'auto' : LANGS[0])
 const THREADS = Number(env.THREADS || Math.min(8, os.cpus().length))
 const OUT = 'voice-out'
 fs.mkdirSync(OUT, { recursive: true })
 
 // Household requests: commands, homework, news, documents, reminders, translation
-const SENTENCES = {
+const ALL_SENTENCES = {
   it: [
     'Accendi la luce in cucina e abbassa il riscaldamento a diciannove gradi.',
     'Quanto fa sette per otto? Spiegamelo come se avessi dieci anni.',
@@ -49,16 +52,17 @@ const SENTENCES = {
     'What are the main news in Switzerland today?',
     'Remind me to buy milk tomorrow at eight.',
   ],
-}[LANG]
-if (!SENTENCES) throw new Error('LANG_CODE must be it, fr or en')
+}
+for (const l of LANGS) if (!ALL_SENTENCES[l]) throw new Error('LANG_CODE must be it, fr, en or a list of them')
+const SENTENCES = LANGS.flatMap((l) => ALL_SENTENCES[l].map((text) => ({ lang: l, text })))
 
 const TTS_ENGINES = {
-  supertonic: { src: TTS_MULTILINGUAL_SUPERTONIC3_Q8_0, config: { ttsEngine: 'supertonic', language: LANG, voice: env.VOICE || 'F1', ttsSpeed: 1.0, ttsNumInferenceSteps: 5 } },
-  chatterbox: { src: TTS_T3_MULTILINGUAL_CHATTERBOX_Q4_0, config: { ttsEngine: 'chatterbox', language: LANG, s3genModelSrc: TTS_S3GEN_MULTILINGUAL_CHATTERBOX_Q4_0, cfmSteps: 1, threads: THREADS } },
+  supertonic: { src: TTS_MULTILINGUAL_SUPERTONIC3_Q8_0, config: { ttsEngine: 'supertonic', voice: env.VOICE || 'F1', ttsSpeed: 1.0, ttsNumInferenceSteps: 5 } },
+  chatterbox: { src: TTS_T3_MULTILINGUAL_CHATTERBOX_Q4_0, config: { ttsEngine: 'chatterbox', s3genModelSrc: TTS_S3GEN_MULTILINGUAL_CHATTERBOX_Q4_0, cfmSteps: 1, threads: THREADS } },
 }
 const STT_MODELS = {
-  'whisper-small': { src: WHISPER_SMALL_Q8_0, config: { language: LANG, strategy: 'greedy', n_threads: THREADS, temperature: 0, translate: false, no_timestamps: true } },
-  'whisper-turbo': { src: WHISPER_LARGE_V3_TURBO, config: { language: LANG, strategy: 'greedy', n_threads: THREADS, temperature: 0, translate: false, no_timestamps: true } },
+  'whisper-small': { src: WHISPER_SMALL_Q8_0, config: { language: STT_LANG, strategy: 'greedy', n_threads: THREADS, temperature: 0, translate: false, no_timestamps: true } },
+  'whisper-turbo': { src: WHISPER_LARGE_V3_TURBO, config: { language: STT_LANG, strategy: 'greedy', n_threads: THREADS, temperature: 0, translate: false, no_timestamps: true } },
   parakeet: { src: PARAKEET_TDT_0_6B_V3_Q8_0, type: 'parakeet-transcription', config: {} },
 }
 const pick = (list, all) => (list ? list.split(',').map((s) => s.trim()) : Object.keys(all)).filter((k) => all[k])
@@ -98,31 +102,34 @@ function wer(ref, hyp) {
   return r.length ? d[r.length][h.length] / r.length : 0
 }
 
-const results = { lang: LANG, machine: `${os.cpus()[0].model.trim()} x${os.cpus().length}, ${(os.totalmem() / 1024 ** 3).toFixed(0)} GB`, tts: [], stt: [] }
+const results = { lang: LANG, sttLanguage: STT_LANG, machine: `${os.cpus()[0].model.trim()} x${os.cpus().length}, ${(os.totalmem() / 1024 ** 3).toFixed(0)} GB`, tts: [], stt: [] }
 const clips = [] // { name, file, text }
 
-// 1. TTS
+// 1. TTS: the language is fixed at load time, so load each engine once per language
 for (const name of pick(env.TTS, TTS_ENGINES)) {
   const e = TTS_ENGINES[name]
-  console.log(`\n=== TTS ${name} (${LANG}) ===`)
-  let t = performance.now()
-  const modelId = await loadModel({ modelSrc: e.src, modelConfig: e.config, onProgress: progress })
-  console.log(`\n  loaded in ${((performance.now() - t) / 1000).toFixed(1)} s`)
-  for (let i = 0; i < SENTENCES.length; i++) {
-    t = performance.now()
-    const r = textToSpeech({ modelId, text: SENTENCES[i], inputType: 'text', stream: false })
-    const samples = await r.buffer
-    const rate = (await r.sampleRate) ?? (name === 'supertonic' ? 44100 : 24000)
-    const ms = performance.now() - t
-    const audioS = samples.length / rate
-    const file = path.join(OUT, `${LANG}-${name}-${i + 1}.wav`)
-    fs.writeFileSync(file, wav(samples, rate))
-    fs.writeFileSync(file.replace(/\.wav$/, '-16k.wav'), wav(resample(samples, rate, 16000), 16000))
-    clips.push({ name: `${name}-${i + 1}`, file: file.replace(/\.wav$/, '-16k.wav'), text: SENTENCES[i] })
-    results.tts.push({ engine: name, sentence: i + 1, synthMs: Math.round(ms), audioS: Number(audioS.toFixed(2)), rtf: Number((ms / 1000 / audioS).toFixed(2)) })
-    console.log(`  ${i + 1}. ${(ms / 1000).toFixed(1)} s for ${audioS.toFixed(1)} s of audio (RTF ${(ms / 1000 / audioS).toFixed(2)})  ${file}`)
+  for (const lang of LANGS) {
+    console.log(`\n=== TTS ${name} (${lang}) ===`)
+    let t = performance.now()
+    const modelId = await loadModel({ modelSrc: e.src, modelConfig: { ...e.config, language: lang }, onProgress: progress })
+    console.log(`\n  loaded in ${((performance.now() - t) / 1000).toFixed(1)} s`)
+    const list = SENTENCES.filter((x) => x.lang === lang)
+    for (let i = 0; i < list.length; i++) {
+      t = performance.now()
+      const r = textToSpeech({ modelId, text: list[i].text, inputType: 'text', stream: false })
+      const samples = await r.buffer
+      const rate = (await r.sampleRate) ?? (name === 'supertonic' ? 44100 : 24000)
+      const ms = performance.now() - t
+      const audioS = samples.length / rate
+      const file = path.join(OUT, `${lang}-${name}-${i + 1}.wav`)
+      fs.writeFileSync(file, wav(samples, rate))
+      fs.writeFileSync(file.replace(/\.wav$/, '-16k.wav'), wav(resample(samples, rate, 16000), 16000))
+      clips.push({ name: `${lang}-${name}-${i + 1}`, file: file.replace(/\.wav$/, '-16k.wav'), text: list[i].text })
+      results.tts.push({ engine: name, lang, sentence: i + 1, synthMs: Math.round(ms), audioS: Number(audioS.toFixed(2)), rtf: Number((ms / 1000 / audioS).toFixed(2)) })
+      console.log(`  ${i + 1}. ${(ms / 1000).toFixed(1)} s for ${audioS.toFixed(1)} s of audio (RTF ${(ms / 1000 / audioS).toFixed(2)})  ${file}`)
+    }
+    await unloadModel({ modelId })
   }
-  await unloadModel({ modelId })
 }
 
 // Your own recordings in voice-in/ (16 kHz mono WAV + .txt with the expected words)
@@ -135,7 +142,7 @@ for (const f of fs.existsSync('voice-in') ? fs.readdirSync('voice-in') : []) {
 // 2. STT
 for (const name of pick(env.STT, STT_MODELS)) {
   const m = STT_MODELS[name]
-  console.log(`\n=== STT ${name} ===`)
+  console.log(`\n=== STT ${name} (language: ${name === "parakeet" ? "auto" : STT_LANG}) ===`)
   let t = performance.now()
   const modelId = await loadModel({ modelSrc: m.src, ...(m.type ? { modelType: m.type } : {}), modelConfig: m.config, onProgress: progress })
   console.log(`\n  loaded in ${((performance.now() - t) / 1000).toFixed(1)} s`)

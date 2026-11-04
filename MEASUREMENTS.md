@@ -189,3 +189,55 @@ Idea: before calling an LLM, a small decision model classifies each request as *
 - `decide()` with `states` (batch) took ~186 ms per request, slower than sequential calls (~139 ms).
 - Asking two questions in one `decide()` call (intent + device, typed decisions 421M) took ~373 ms for a command, the same as two separate calls (~268 + ~144 ms after warm-up). The cost grows with the questions asked, so a router should ask the second question only when it is needed.
 - Limits: 40 hand-written requests, one run, English only.
+
+## 9. RTX 3060 and SDK 0.23 (3 November 2026)
+
+omen01's GeForce GT 1030 (2 GB) was replaced by a second-hand RTX 3060 12 GB (Gigabyte Gaming OC). Idle: 8 W of 170 W, 31 °C. Driver 580.178.04, CUDA 13.0.
+
+Side effect worth knowing: after the swap, the onboard Realtek network card (r8169) stopped at boot with `AER: can't recover (no error_detected callback)` and PCIe "UnsupReq" errors on its root port. `pcie_aspm=off` on the kernel command line fixed it.
+
+### Qwen3 4B Q4_K_M through `qvac serve` (omen01)
+
+Prompt: "Spiega in tre frasi cos'è un router di casa. /no_think" (about 70 tokens out), timed with curl, non-streaming. The first request after a start includes loading the model into VRAM.
+
+| Setup | First request | Next requests | Server log |
+| --- | --- | --- | --- |
+| CPU, CLI 0.15 / SDK 0.21 | 5.7 s | | |
+| RTX 3060, CLI 0.15 / SDK 0.21 | 9.2 s | 1.10 s | |
+| RTX 3060, CLI 0.18 / SDK 0.23 | 4.1 s | 0.88 s | 69 tokens, 83.8 tok/s, TTFT 36 ms, `backend=gpu` |
+
+- Only `"device": "gpu"` changed in `qvac.config.json`; GPU memory used: ~2.8 GB.
+- Bandwidth estimate: 360 GB/s ÷ 2.5 GB ≈ 145 tok/s; measured 84 tok/s (~58%).
+- 0.23's server log reports tok/s, TTFT and `backend=gpu` per request, but not CUDA vs Vulkan.
+
+### Voice assistant (home-router on omen01, satellite on the Legion over Tailscale)
+
+Whisper small Q8 (one instance per language), Supertonic 3 on CPU, real spoken questions in Italian. Times from the satellite's log.
+
+| Whisper on | Speech to text |
+| --- | --- |
+| i7-10700K CPU, 8 threads | 2.35–2.43 s |
+| GT 1030 | 1.09–1.33 s |
+| RTX 3060 | 0.31–0.43 s |
+
+| Question (RTX 3060) | From end of question to first spoken word |
+| --- | --- |
+| "Che ore sono a New York?" (answered from the server clock, no LLM) | 0.9 s |
+| General question, reply spoken after the whole answer | 2.4 s |
+| Same question, each sentence spoken as soon as the LLM finishes it | 1.4 s |
+
+- The first question after starting home-router took 22.9 s (first use of every model); warming each model up at startup brought the first question to 2.4 s.
+- Whisper's own language detection turned "che ore sono" into French ("que horas o no"); each device now declares its language.
+- Qwen3 4B invented live data ("23 °C, cielo sereno" for Geneva in November) and once said that fish breathe with lungs: weather, news and prices now go to a web search after asking, and factual questions need a larger model.
+- One run per question: orders of magnitude, not a benchmark.
+
+### Registry error on Windows: root cause
+
+"Invalid device file, was modified" ([tetherto/qvac#5407](https://github.com/tetherto/qvac/issues/5407)) came from `bare-fs`, not from a damaged store. A log line added to `device-file` on a failing run showed the file ID matching and the times negative:
+
+```
+{"ino":"43628621391516500","inode":43628621391516500,"mtime":-1894642065,"birthtime":-1894642070,"created":1793401687656}
+```
+
+`bare-fs` 4.5.5–4.8.3 computes `time.tv_sec * 1000` with `tv_sec` a 32-bit `long` on Windows, so the multiplication overflows. 4.8.4 casts to `int64_t`. After `npm update bare-fs`, the same store opened, with `mtime` 1793401687663. `registry-repro.js` had not shown this, because a cached model never opens the registry; `registry-open.js` lists the registry and always does.
+

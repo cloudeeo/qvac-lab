@@ -1,5 +1,7 @@
 # qvac-lab
 
+[![Built with QVAC](https://raw.githubusercontent.com/tetherto/qvac/refs/heads/main/docs/branding/qvac-badge-green-light.svg)](https://github.com/tetherto/qvac)
+
 Hands-on measurements of Tether's [QVAC SDK](https://github.com/tetherto/qvac) (`@qvac/sdk` 0.21 and 0.22) on four home machines, from a Pentium NUC without AVX to a Ryzen laptop with a discrete GPU. October 2026.
 
 This is a personal lab, not affiliated with Tether. Each figure comes from a few runs of three prompts: good for orders of magnitude, not a rigorous benchmark. The full log, with every run and the reasoning behind it, is in [`MEASUREMENTS.md`](MEASUREMENTS.md). Issues met while setting up the SDK, with suggestions, are in [`SDK-FEEDBACK.md`](SDK-FEEDBACK.md).

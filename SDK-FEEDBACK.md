@@ -82,6 +82,16 @@ Two items above are partly addressed in 0.22: `modelFitPolicy: 'refuse'` gives a
 
 **21. Batch `decide()` was slower per request than sequential calls** (~186 ms vs ~139 ms per request, 12 states, CPU).
 
+## Found while testing 0.23.0 and @qvac/core 0.11.4 (6 November 2026)
+
+**22. `qvac serve` keeps a model alias after the worker has lost the model.** On omen01 (CLI 0.18, SDK 0.23), `qwen4b` stayed mapped to its model ID while the worker answered `MODEL_NOT_FOUND` for that ID. A streaming request then gets `200` and a stream that closes with no tokens; a non-streaming one gets `500` with only "An internal error occurred.". A client cannot tell "the model is gone" from "the model said nothing". Seen once; restarting the service reloaded the model. Suggestion: return an error status (or an error event in the stream) with the code, and reload or unregister the alias when the worker loses a model.
+
+**23. A cached model was downloaded again, and a registry timeout then failed the load.** After the update to 0.23, home-router downloaded `embeddinggemma-300M-Q8_0.gguf` (328 MB) from the registry although a file of the same size was already in `~/.qvac/models`; a day earlier the same load had failed with `REQUEST_TIMEOUT`. Seen on one machine; not yet reduced to a repro. `fallbackSrc` pointing to a local copy works around it.
+
+**24. `duck` locks the shared registry store even with `--storage`.** With `duck --headless --storage <dir>` running, another QVAC app on the same machine failed with "File descriptor could not be locked" on `~/.qvac/registry-corestore`. `--storage` moves duck's own data, but not the registry store, so duck and any SDK app cannot run side by side.
+
+**25. The `duck` command fails on Windows.** The npm shim looks for `bare.exe`, which is not there. Running `bare <global npm dir>\@qvac\core\tui\index.mjs` directly works.
+
 ## What worked well
 
 - One SDK for LLM, embeddings, speech and RAG, with the same calls on Linux and Windows.

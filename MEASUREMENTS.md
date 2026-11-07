@@ -241,3 +241,27 @@ Whisper small Q8 (one instance per language), Supertonic 3 on CPU, real spoken q
 
 `bare-fs` 4.5.5–4.8.3 computes `time.tv_sec * 1000` with `tv_sec` a 32-bit `long` on Windows, so the multiplication overflows. 4.8.4 casts to `int64_t`. After `npm update bare-fs`, the same store opened, with `mtime` 1793401687663. `registry-repro.js` had not shown this, because a cached model never opens the registry; `registry-open.js` lists the registry and always does.
 
+
+## 10. Delegated inference over the QVAC mesh (7 November 2026)
+
+The Legion asks, omen01's RTX 3060 answers, over the QVAC mesh (`@qvac/core` 0.11.4, `duck` TUI). No HTTP server, no API key, no port opened by hand: the Legion joined omen01's mesh with a device invite and picked the agent provided by omen01.
+
+- omen01: `QVAC_MODEL=Qwen3.5-4B-Q4_K_M duck --headless --storage <dir>` (the 4B is what duck's device profile recommends for 12 GB of VRAM).
+- Legion: `duck --storage <dir> --device-join <invite>`, then the omen01 agent. Both machines on the same home network.
+- Prompt: "Spiega in tre frasi cos'è un router di casa." Figures as shown by duck on the asking device.
+
+| Run | Time to first token | Generation | Tokens | Note |
+| --- | --- | --- | --- | --- |
+| 1st | 28.5 s | 48.6 tok/s | 129 | first use: model downloaded (2.7 GB) and loaded on omen01 just before |
+| 2nd | 0.33 s | 65.1 tok/s | 207 | model already loaded |
+
+- On omen01 the duck model sidecar held 4.4 GB of VRAM, next to `qvac serve` with Qwen3 4B (2.8 GB) and home-router's Whisper (1.4 GB): 8.8 of 12 GB in use.
+- The reply streams back to the asking device as the model writes, thinking included.
+- The first answer had two sentences instead of three; the second had three.
+- One run each: orders of magnitude, not a benchmark. Not yet measured: the same question with duck local on omen01, and `qvac serve` over Tailscale HTTPS as the HTTP reference.
+
+### Getting there on Windows
+
+- `duck` on Windows needs `bare` called directly (`bare <npm global>/@qvac/core/tui/index.mjs`), as the shim looks for `bare.exe`.
+- The TUI then failed with "worker closed before ready": `tui/boot.mjs` builds the harness entry with `new URL(import.meta.resolve(...)).pathname`, which on Windows gives `/C:/Users/...`; the loader then looks in `/C:/C:/Users/...`. Using `fileURLToPath(...)`, as the next line of the same file already does, fixed it on the Legion.
+- A device join started while the TUI was failing did not complete, and the Legion stayed on its own mesh ("membership 1", no peers in `/doctor`); joining again after the fix worked.

@@ -92,8 +92,11 @@ Two items above are partly addressed in 0.22: `modelFitPolicy: 'refuse'` gives a
 
 **25. The `duck` command fails on Windows.** The npm shim looks for `bare.exe`, which is not there. Running `bare <global npm dir>\@qvac\core\tui\index.mjs` directly works.
 
+**26. The `duck` TUI cannot start its worker on Windows.** `tui/boot.mjs` (`@qvac/core` 0.11.4) sets `harnessEntry = new URL(import.meta.resolve('@qvac/harness/worker/stow-entry.mjs')).pathname`. On Windows that is `/C:/Users/...`, and the loader then looks for `/C:/C:/Users/.../stow-entry.mjs`, so startup fails with "worker closed before ready". The next line of the same file uses `fileURLToPath(...)`; doing the same for `harnessEntry` fixed it on the Legion, and delegated inference to omen01 then worked (`MEASUREMENTS.md`, section 10).
+
 ## What worked well
 
+- Delegated inference over the mesh: one device invite, and a laptop used a desktop GPU with no server, port or key to manage.
 - One SDK for LLM, embeddings, speech and RAG, with the same calls on Linux and Windows.
 - Models run on a Pentium without AVX.
 - `fallbackSrc` made a failing registry download recoverable in one line.

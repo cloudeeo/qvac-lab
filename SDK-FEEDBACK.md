@@ -88,7 +88,7 @@ Two items above are partly addressed in 0.22: `modelFitPolicy: 'refuse'` gives a
 
 **23. A cached model was downloaded again, and a registry timeout then failed the load.** After the update to 0.23, home-router downloaded `embeddinggemma-300M-Q8_0.gguf` (328 MB) from the registry although a file of the same size was already in `~/.qvac/models`; a day earlier the same load had failed with `REQUEST_TIMEOUT`. Seen on one machine; not yet reduced to a repro. `fallbackSrc` pointing to a local copy works around it.
 
-**24. `duck` locks the shared registry store even with `--storage`.** With `duck --headless --storage <dir>` running, another QVAC app on the same machine failed with "File descriptor could not be locked" on `~/.qvac/registry-corestore`. `--storage` moves duck's own data, but not the registry store, so duck and any SDK app cannot run side by side.
+**24. Unclear which process holds the registry lock.** While `duck` sessions were running on omen01, home-router failed at startup with "File descriptor could not be locked" on `~/.qvac/registry-corestore`, and it started once the leftover `bare` processes were stopped. The duck README says `--storage <dir>` moves the SDK home and its lock to `<dir>/sdk-home`, so the holder was probably an earlier duck started without `--storage`; not yet confirmed (a later duck with `--storage` had not opened the registry when checked). Naming the holding process, or the store path and how to isolate it, in the lock error would make this quick to diagnose.
 
 **25. The `duck` command fails on Windows.** The npm shim looks for `bare.exe`, which is not there. Running `bare <global npm dir>\@qvac\core\tui\index.mjs` directly works.
 

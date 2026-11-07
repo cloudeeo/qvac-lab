@@ -94,8 +94,11 @@ Two items above are partly addressed in 0.22: `modelFitPolicy: 'refuse'` gives a
 
 **26. The `duck` TUI cannot start its worker on Windows.** `tui/boot.mjs` (`@qvac/core` 0.11.4) sets `harnessEntry = new URL(import.meta.resolve('@qvac/harness/worker/stow-entry.mjs')).pathname`. On Windows that is `/C:/Users/...`, and the loader then looks for `/C:/C:/Users/.../stow-entry.mjs`, so startup fails with "worker closed before ready". The next line of the same file uses `fileURLToPath(...)`; doing the same for `harnessEntry` fixed it on the Legion, and delegated inference to omen01 then worked (`MEASUREMENTS.md`, section 10).
 
+**27. `qvac serve` downloads a cached model again, and the download fails with "Blob CRC mismatch".** On omen01 (CLI 0.18, SDK 0.23) `qwen35b` (`QWEN3_6_35B_A3B_MULTIMODAL_Q4_K_M`, loaded from cache on earlier starts) failed to preload on two restarts in a row with `Could not download "Qwen3.6-35B-A3B-UD-Q4_K_M.gguf" from the registry on this network (Blob CRC mismatch)`. The server still started and listed the model with `"state":"error"`, which is good. Two questions: why a cached model goes back to the registry (see item 23), and whether a CRC mismatch is retried or leaves a partial file. The error suggests `fallbackSrc`, but the cause here is not the network.
+
 ## What worked well
 
+- `qvac serve` rejects unknown Host headers with a clear message naming the fix (`--allowed-host` or `serve.allowedHosts`), and keeps serving the models that loaded when one fails.
 - Delegated inference over the mesh: one device invite, and a laptop used a desktop GPU with no server, port or key to manage.
 - One SDK for LLM, embeddings, speech and RAG, with the same calls on Linux and Windows.
 - Models run on a Pentium without AVX.

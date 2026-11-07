@@ -258,7 +258,23 @@ The Legion asks, omen01's RTX 3060 answers, over the QVAC mesh (`@qvac/core` 0.1
 - On omen01 the duck model sidecar held 4.4 GB of VRAM, next to `qvac serve` with Qwen3 4B (2.8 GB) and home-router's Whisper (1.4 GB): 8.8 of 12 GB in use.
 - The reply streams back to the asking device as the model writes, thinking included.
 - The first answer had two sentences instead of three; the second had three.
-- One run each: orders of magnitude, not a benchmark. Not yet measured: the same question with duck local on omen01, and `qvac serve` over Tailscale HTTPS as the HTTP reference.
+- One run each: orders of magnitude, not a benchmark. Not yet measured: the same question with duck local on omen01.
+
+### HTTP reference: the same model through `qvac serve`
+
+Same model (`QWEN3_5_4B_MULTIMODAL_Q4_K_M`, alias `qwen35-4b`, on the GPU of omen01), same prompt, `http-bench.js` with `RUNS=2`, streaming `/v1/chat/completions`. Time to first token counts reasoning tokens too, as duck does. duck was stopped to free VRAM.
+
+| Path | Time to first token (2nd run) | Generation |
+| --- | --- | --- |
+| `qvac serve`, client on omen01 (loopback) | 89 ms | 70 tok/s |
+| `qvac serve`, client on the Legion over Tailscale HTTPS | 104 ms | 71 tok/s |
+| QVAC mesh, Legion asking omen01 (duck) | 327 ms | 65 tok/s |
+
+- Over the home network, Tailscale HTTPS added about 15 ms to the first token; the mesh path about 240 ms. Generation speed is the GPU's in all three.
+- The duck figures are those shown by duck (from the request to the first streamed chunk); `http-bench.js` measures from the HTTP request. Close, not identical methods.
+- With no reasoning limit, `qwen35-4b` in `qvac serve` often spent its whole token allowance thinking (990 tokens, no answer); one run in four answered. duck limits the thinking and always answered. A `reasoning_budget` in the serve config is the next thing to try.
+- CLI 0.18 checks the Host header: requests through `tailscale serve` got `403 host_not_allowed` until the tailnet name was added to `serve.allowedHosts`.
+- One or two runs per path.
 
 ### Getting there on Windows
 

@@ -96,8 +96,15 @@ Two items above are partly addressed in 0.22: `modelFitPolicy: 'refuse'` gives a
 
 **27. `qvac serve` downloads a cached model again, and the download fails with "Blob CRC mismatch".** On omen01 (CLI 0.18, SDK 0.23) `qwen35b` (`QWEN3_6_35B_A3B_MULTIMODAL_Q4_K_M`, loaded from cache on earlier starts) failed to preload on two restarts in a row with `Could not download "Qwen3.6-35B-A3B-UD-Q4_K_M.gguf" from the registry on this network (Blob CRC mismatch)`. The server still started and listed the model with `"state":"error"`, which is good. Two questions: why a cached model goes back to the registry (see item 23), and whether a CRC mismatch is retried or leaves a partial file. The error suggests `fallbackSrc`, but the cause here is not the network.
 
+**28. `qvac serve` rejects the `fallbackSrc` that the SDK error recommends.** With `"fallbackSrc": "<local file>"` inside `serve.models.<alias>.config`, CLI 0.18 fails the preload with `Invalid request: Unrecognized key: "fallbackSrc"`, while the SDK's own registry error says to "pass a fallbackSrc". The explicit entry form (`{ "type": "llamacpp-completion", "src": "<local file>" }`) loads the local file, but then the model is no longer the registry constant (no checksum, no projector). Either accepting `fallbackSrc` in the serve config or pointing to the explicit form in the error would close the gap.
+
+**29. "MULTIMODAL" constants load as text-only unless the projector is configured by hand.** `QWEN3_5_4B_MULTIMODAL_Q4_K_M` carries only the text weights; the projector is a separate constant (`MMPROJ_QWEN3_5_4B_MULTIMODAL_Q8_0`, also F16/BF16) that nothing links to the model. Loaded through `qvac serve` with the model constant alone, an image request fails; adding `"projectionModelSrc": "MMPROJ_QWEN3_5_4B_MULTIMODAL_Q8_0"` and `"mmproj-use-gpu": true` to the model's `config` made vision work (a red square → "red", 3.1 s, one run). `QWEN3_6_35B_A3B_MULTIMODAL_Q4_K_M` has no MMPROJ constant at all, although Unsloth publishes `mmproj-F16.gguf` for it. Suggestions: a default projector per multimodal constant, or `serve` docs that show `projectionModelSrc`; and a constant for the 35B projector.
+
+**30. An image sent to a text-only model is a 500 "An internal error occurred."** The worker raises "Media not supported by text-only models", the CLI logs it as `unhandled` and answers `500 internal_error`. A `400` with that message would tell the client what to change.
+
 ## What worked well
 
+- `qvac serve` accepts OpenAI image parts (`image_url` as a base64 data URI, PNG or JPEG) on `/v1/chat/completions`, so a multimodal model works with any OpenAI client.
 - `qvac serve` rejects unknown Host headers with a clear message naming the fix (`--allowed-host` or `serve.allowedHosts`), and keeps serving the models that loaded when one fails.
 - Delegated inference over the mesh: one device invite, and a laptop used a desktop GPU with no server, port or key to manage.
 - One SDK for LLM, embeddings, speech and RAG, with the same calls on Linux and Windows.

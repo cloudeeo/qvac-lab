@@ -281,3 +281,19 @@ Same model (`QWEN3_5_4B_MULTIMODAL_Q4_K_M`, alias `qwen35-4b`, on the GPU of ome
 - `duck` on Windows needs `bare` called directly (`bare <npm global>/@qvac/core/tui/index.mjs`), as the shim looks for `bare.exe`.
 - The TUI then failed with "worker closed before ready": `tui/boot.mjs` builds the harness entry with `new URL(import.meta.resolve(...)).pathname`, which on Windows gives `/C:/Users/...`; the loader then looks in `/C:/C:/Users/...`. Using `fileURLToPath(...)`, as the next line of the same file already does, fixed it on the Legion.
 - A device join started while the TUI was failing did not complete, and the Legion stayed on its own mesh ("membership 1", no peers in `/doctor`); joining again after the fix worked.
+
+## 11. BotPsy-0.8B as the router of a home assistant (11 November 2026)
+
+[BotPsy-0.8B](https://huggingface.co/qvac/BotPsy-0.8B-GGUFs) (Tether, tool calling, Q8_0, 0.81 GB) through `qvac serve` on the RTX 3060 (explicit `src` entry, `tools: true`, `ctx_size` 8192), on the same 40 English requests used to choose Laya as home-router's router (10 per intent: action, search, document, chat). The intents become tools: `control_device(device, action, room?, value?)`, `web_search(query)`, `search_documents(query)`; no tool call means chat. Sampling as the model card recommends (temperature 0.3, top_p 0.95, top_k 20, presence_penalty 1.5). One warm-up request per mode, then one run of the 40. Script: `botpsy-route-bench.mjs`.
+
+| Router | Right | action | search | document | chat | Time per request | Also gives |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Laya typed decisions 421M (CPU, 23 Oct) | 34/40 | 8-9/10 each (see section 8) | | | | 242 ms mean | intent only; the device needs a second `decide()` |
+| BotPsy, thinking on (GPU) | **37/40** | 10/10 | 10/10 | 8/10 | 9/10 | 813 ms median, 1,260 ms mean | device, action, room, value |
+| BotPsy, thinking off (GPU) | 30/40 | 9/10 | 7/10 | 4/10 | 10/10 | 466 ms median, 576 ms mean | same |
+
+- With thinking on, BotPsy routed better than Laya and filled the arguments of every command: 10/10 devices right, rooms and values included ("Dim the kitchen lights to 30 percent" → `lights`, `dim`, `kitchen`, `30`). Its three errors were two personal documents sent to web search and "Explain how a heat pump works" sent to search instead of answered.
+- Thinking off is faster but worse: it answered most document and live-information requests with "I don't have access…" instead of calling the tool.
+- It is 3-5 times slower than Laya per request, on a GPU against Laya on the CPU. For a voice assistant that is the cost of one more sentence of latency, unless BotPsy only handles the requests Laya is unsure about.
+- An earlier 8-case check in Italian and French: 7/8 right; it read "Che tempo fa a Ginevra?" as a question about the time, and answered small talk badly (it is a tool caller, not a chat model).
+- One run per mode: orders of magnitude, not a benchmark. Laya's figures are from its own run of 23 October.

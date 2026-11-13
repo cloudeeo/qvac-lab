@@ -297,3 +297,45 @@ Same model (`QWEN3_5_4B_MULTIMODAL_Q4_K_M`, alias `qwen35-4b`, on the GPU of ome
 - It is 3-5 times slower than Laya per request, on a GPU against Laya on the CPU. For a voice assistant that is the cost of one more sentence of latency, unless BotPsy only handles the requests Laya is unsure about.
 - An earlier 8-case check in Italian and French: 7/8 right; it read "Che tempo fa a Ginevra?" as a question about the time, and answered small talk badly (it is a tool caller, not a chat model).
 - One run per mode: orders of magnitude, not a benchmark. Laya's figures are from its own run of 23 October.
+
+### The same comparison in Italian (11 November 2026)
+
+The 40 requests translated into Italian (`route-cases-it.json`), same tools, same English tool descriptions and system prompt, same sampling; Laya rerun on the same day in both languages with home-router's `route-eval.js` (threshold 0.45). One run each.
+
+| Router | Language | Right | action | search | document | chat | Sent directly (p ≥ 0.45) | Time per request |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Laya | English | 34/40 | 9/10 | 8/10 | 8/10 | 9/10 | 20/40, 0 wrong | 253 ms mean |
+| Laya | Italian | 19/40 | 3/10 | 4/10 | 2/10 | 10/10 | 5/40, 0 wrong | 267 ms mean |
+| BotPsy, thinking on | Italian | **34/40** | 10/10 | 10/10 | 8/10 | 6/10 | n/a | 1,217 ms median, 1,436 ms mean |
+| BotPsy, thinking off | Italian | 25/40 | 9/10 | 4/10 | 2/10 | 10/10 | n/a | 486 ms median, 535 ms mean |
+
+- Laya does not carry over to Italian: almost everything falls to `chat` with p between 0.33 and 0.43, so only 5 of 40 requests clear the threshold. Its confidence is honest (no wrong direct route in either language), so in Italian it would hand nearly all traffic to the fallback.
+- BotPsy with thinking keeps 34/40 in Italian. Its errors go the other way from Laya's: two personal documents and four plain chat questions (heat pump, risotto recipe, capital of Australia, a joke) sent to `web_search`, often with the query translated into English.
+- Argument errors the route score does not count: "Spegni le luci in salotto" and "Spegni il riscaldamento" came back as `action: "on"` in both modes (the opposite command), and "Apri la porta del garage" as device `door` with thinking on. A router that executes actions needs a check on the verb (spegni/off, accendi/on) or Italian tool descriptions before it is trusted with devices.
+- Thinking off in Italian answers live and document requests with "I non ho accesso…", mixing English and Italian.
+- One run per mode and language: orders of magnitude, not a benchmark.
+
+English rerun of BotPsy on the same evening, for a same-day comparison with Laya:
+
+| Router | Language | Right | action | search | document | chat | Time per request |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| BotPsy, thinking on | English | **38/40** | 10/10 | 10/10 | 8/10 | 10/10 | 976 ms median, 1,309 ms mean |
+| BotPsy, thinking off | English | 29/40 | 9/10 | 6/10 | 4/10 | 10/10 | 470 ms median, 578 ms mean |
+
+- With thinking on, every argument was right in English: "Turn off" gave `off`, "Dim … to 30 percent" gave `dim`, `kitchen`, `30`, the garage door gave `garage`. The inverted verb is an Italian problem, so Italian tool descriptions (or a verb check) are the first thing to try.
+- Its only errors were two personal documents (car insurance, washing machine warranty) sent to web search, as in Italian and in the first English run (37/40).
+- With thinking off, "Dim the kitchen lights to 30 percent" came back as `action: "off"` without the room: counted as a right route, but it would switch the lights off.
+- From English to Italian BotPsy with thinking loses 4 points (38 → 34); Laya loses 15 (34 → 19).
+
+### Laya first, BotPsy when Laya is unsure (12 November 2026)
+
+home-router's `second-router` branch: Laya decides when p ≥ 0.45, otherwise BotPsy with thinking picks the route. Compared with the runs above, the BotPsy system prompt and tool descriptions were rewritten: multilingual device names, and two explicit rules ("questions about the user's own documents… use search_documents, never web_search"; "general knowledge, explanations, recipes, jokes and writing help need no tool"). Measured with home-router's `scripts/route-eval.js` against the running `qvac serve`, one run per language.
+
+| Language | Laya alone | Sent to BotPsy | Hybrid | BotPsy time (mean) |
+| --- | --- | --- | --- | --- |
+| English | 34/40 | 20/40 | **40/40** | 1,054 ms |
+| Italian | 19/40 | 35/40 | **40/40** | 1,435 ms |
+
+- Every device was right in Italian too, including "Apri la porta del garage" → `garage` (the garage rule in home-router did not have to step in, as far as the table shows).
+- The two rules fixed exactly the errors seen above (documents and plain questions sent to web search), and they were written after seeing those errors on these same 40 requests: the 40/40 is a fit to this set, not a held-out score. A new set of requests is needed to know how well it generalises.
+- Average time per request: about 0.25 s when Laya is sure, 1–3 s when BotPsy decides; in Italian that is most requests.
